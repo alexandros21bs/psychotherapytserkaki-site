@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && rsync -avz --delete -e 'ssh -p 65002' dist/ u210865293@82.25.102.11:~/domains/psychotherapytserkaki.gr/public_html/"
   },
   "dependencies": {
     "react": "^19.2.4",
