@@ -388,6 +388,15 @@ p {
   font-size: 0.9rem;
 }
 
+.home-hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
 /* ---- Buttons ---- */
 .btn-outline {
   border: 1.5px solid var(--primary);
@@ -479,6 +488,39 @@ p {
   margin-bottom: 14px;
 }
 
+.home-service-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fffaf6 0%, #f1e7dd 100%);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+}
+
+.home-service-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-service-fallback-icon {
+  width: 42px;
+  height: 42px;
+}
+
+.home-intro-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
 /* ---- Trust Number ---- */
 .trust-number {
   display: block;
@@ -528,6 +570,13 @@ p {
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   margin-bottom: 14px;
+}
+
+.card-service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 /* ---- Approach ---- */
@@ -613,6 +662,10 @@ p {
 /* ---- FAQ ---- */
 .faq-list {
   margin-top: 24px;
+}
+
+.faq-section-block + .faq-section-block {
+  margin-top: 48px;
 }
 
 .faq-item {
@@ -738,6 +791,63 @@ p {
   font-weight: 500;
 }
 
+.about-profile-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.about-approach-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.value-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.value-item h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.value-item p {
+  margin-bottom: 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.value-number {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+
+.about-values-header {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---- Support List ---- */
 .support-list {
   list-style: none;
@@ -753,6 +863,46 @@ p {
   border: 1px solid var(--line);
   border-radius: 12px;
   font-weight: 500;
+}
+
+.service-back-link {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.service-back-link:hover {
+  color: var(--primary-dark);
+}
+
+.hero-compact .service-back-link {
+  display: flex;
+  width: fit-content;
+  margin: 0 0 14px;
+}
+
+.service-hero-image-wrap {
+  margin-top: 22px;
+}
+
+.service-hero-image {
+  width: 100%;
+  max-width: 760px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
 }
 
 /* ---- Contact ---- */
@@ -864,7 +1014,18 @@ p {
     grid-template-columns: 5fr 7fr;
   }
 
+  .values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
   .contact-grid {
     grid-template-columns: 5fr 7fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .values-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

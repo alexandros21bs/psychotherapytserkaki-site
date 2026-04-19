@@ -1,9 +1,11 @@
 import { posts } from '../data/posts'
+import BackLink from '../components/common/BackLink'
 
 export default function Blog() {
   return (
     <section className="section">
       <div className="container">
+        <BackLink fallback="/" />
         <p className="eyebrow">Blog</p>
         <h1>Άρθρα</h1>
 

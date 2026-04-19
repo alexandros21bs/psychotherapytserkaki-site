@@ -28,6 +28,7 @@ export default function Header() {
           <NavLink to="/">Αρχική</NavLink>
           <NavLink to="/about">Σχετικά</NavLink>
           <NavLink to="/services">Υπηρεσίες</NavLink>
+          <NavLink to="/faq">FAQ</NavLink>
           <NavLink to="/blog">Blog</NavLink>
           <NavLink to="/contact" className="btn btn-primary nav-cta">
             Κλείσε Ραντεβού

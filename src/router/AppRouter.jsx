@@ -6,6 +6,7 @@ import Services from '../pages/Services'
 import ServiceSingle from '../pages/ServiceSingle'
 import Blog from '../pages/Blog'
 import Article from '../pages/Article'
+import Faq from '../pages/Faq'
 import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound'
 
@@ -19,6 +20,7 @@ export default function AppRouter() {
         <Route path="/services/:slug" element={<ServiceSingle />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<Article />} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Route>

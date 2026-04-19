@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services'
+import BackLink from '../components/common/BackLink'
 
 export default function Services() {
   return (
@@ -7,11 +8,13 @@ export default function Services() {
       {/* Hero */}
       <section className="hero-section hero-compact">
         <div className="container">
+          <BackLink fallback="/" />
           <p className="eyebrow">Υπηρεσίες</p>
           <h1>Πώς μπορώ να βοηθήσω</h1>
           <p className="hero-sub">
-            Κάθε μορφή θεραπείας προσαρμόζεται στις ανάγκες σου — με σεβασμό,
-            ασφάλεια και επαγγελματισμό.
+            Κάθε θεραπευτική διαδικασία διαμορφώνεται με βάση τις δικές σου
+            ανάγκες, μέσα σε ένα πλαίσιο ασφάλειας, σεβασμού και ουσιαστικής
+            υποστήριξης.
           </p>
         </div>
       </section>
@@ -26,7 +29,13 @@ export default function Services() {
                 className="card card-hover card-service"
                 key={service.slug}
               >
-                <div className="card-service-image">[IMAGE_PLACEHOLDER]</div>
+                <div className="card-service-image">
+                  {service.image ? (
+                    <img src={service.image} alt={service.title} loading="lazy" />
+                  ) : (
+                    '[IMAGE_PLACEHOLDER]'
+                  )}
+                </div>
                 <h3>{service.title}</h3>
                 <p>{service.excerpt}</p>
                 <span className="text-link">Μάθε περισσότερα →</span>
@@ -40,11 +49,12 @@ export default function Services() {
       <section className="section section-alt">
         <div className="container intro-block">
           <p className="eyebrow">Υποστήριξη</p>
-          <h2>Ένα ασφαλές περιβάλλον για κάθε βήμα</h2>
+          <h2>Ένα ασφαλές πλαίσιο για κάθε βήμα</h2>
           <p className="intro-text">
-            Η θεραπεία δεν απαιτεί να έχεις τις απαντήσεις. Αρκεί η διάθεση
-            να ξεκινήσεις. Θα δουλέψουμε μαζί, στον δικό σου ρυθμό, με
-            εμπιστοσύνη και υπομονή.
+            Η θεραπεία δεν απαιτεί να έχεις έτοιμες απαντήσεις. Αρκεί η
+            διάθεση να ξεκινήσεις. Με εμπιστοσύνη, υπομονή και σεβασμό στον
+            δικό σου ρυθμό, μπορεί να δημιουργηθεί ένας χώρος ουσιαστικής
+            υποστήριξης.
           </p>
         </div>
       </section>
@@ -54,8 +64,8 @@ export default function Services() {
         <div className="container cta-block">
           <h2>Κάνε το πρώτο βήμα</h2>
           <p>
-            Επικοινώνησε μαζί μου για να κλείσεις μια πρώτη γνωριμία — δια
-            ζώσης ή online.
+            Επικοινώνησε μαζί μου για μια πρώτη επικοινωνία, δια ζώσης ή
+            online.
           </p>
           <Link to="/contact" className="btn btn-primary btn-lg">
             Κλείσε Ραντεβού

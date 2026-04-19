@@ -3,6 +3,8 @@ import { siteData } from '../data/site'
 import { services } from '../data/services'
 import { faqItems } from '../data/faq'
 import { reviews } from '../data/reviews'
+import introImage from '../../dad.jpg'
+import heroImage from '../../ADAM.jpg'
 
 export default function Home() {
   return (
@@ -33,7 +35,12 @@ export default function Home() {
           </div>
 
           <div className="hero-visual">
-            <div className="hero-image-placeholder">[HERO_IMAGE_PLACEHOLDER]</div>
+            <img
+              src={heroImage}
+              alt="Αδαμαντία Τσερκάκη"
+              className="home-hero-image"
+              loading="eager"
+            />
           </div>
         </div>
       </section>
@@ -42,9 +49,12 @@ export default function Home() {
       <section className="section" aria-label="Σύντομη γνωριμία">
         <div className="container split-grid">
           <div className="split-media">
-            <div className="hero-image-placeholder ratio-square">
-              [SECTION_IMAGE_PLACEHOLDER]
-            </div>
+            <img
+              src={introImage}
+              alt="Αδαμαντία Τσερκάκη"
+              className="home-intro-image"
+              loading="lazy"
+            />
           </div>
 
           <div className="split-text">
@@ -88,8 +98,25 @@ export default function Home() {
                 className="card card-hover"
                 key={service.slug}
               >
-                <div className="card-icon" aria-hidden="true">
-                  {service.title.charAt(0)}
+                <div className="home-service-media" aria-hidden="true">
+                  {service.image ? (
+                    <img src={service.image} alt="" loading="lazy" />
+                  ) : (
+                    <svg
+                      className="home-service-fallback-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="12" cy="7" r="3" stroke="currentColor" strokeWidth="1.8" />
+                      <path
+                        d="M5 18C5 14.6863 8.13401 12 12 12C15.866 12 19 14.6863 19 18"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  )}
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.excerpt}</p>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { siteData } from '../data/site'
+import BackLink from '../components/common/BackLink'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
@@ -21,6 +22,7 @@ export default function Contact() {
       {/* Hero */}
       <section className="hero-section hero-compact">
         <div className="container">
+          <BackLink fallback="/" />
           <p className="eyebrow">Επικοινωνία</p>
           <h1>Ας μιλήσουμε</h1>
           <p className="hero-sub">

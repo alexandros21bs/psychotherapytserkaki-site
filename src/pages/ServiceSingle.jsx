@@ -1,9 +1,25 @@
 import { useParams, Link } from 'react-router-dom'
 import { services } from '../data/services'
+import BackLink from '../components/common/BackLink'
 
 export default function ServiceSingle() {
   const { slug } = useParams()
   const service = services.find((s) => s.slug === slug)
+
+  const detailedParagraphs = service?.detailedParagraphs ?? [
+    '[SERVICE_DETAILED_TEXT_PLACEHOLDER — Αναλυτική περιγραφή της υπηρεσίας, της διαδικασίας και του τι μπορεί να περιμένει κανείς.]',
+  ]
+
+  const supportPoints = service?.supportPoints ?? [
+    'Νιώθεις ότι κάτι σε κρατάει πίσω',
+    'Αντιμετωπίζεις δυσκολίες στις σχέσεις σου',
+    'Θέλεις να κατανοήσεις καλύτερα τον εαυτό σου',
+    'Περνάς μια δύσκολη περίοδο και χρειάζεσαι στήριξη',
+  ]
+
+  const closingText =
+    service?.closingText ??
+    'Κλείσε μια πρώτη συνεδρία και ξεκίνα τη δική σου διαδρομή.'
 
   if (!service) {
     return (
@@ -23,9 +39,15 @@ export default function ServiceSingle() {
       {/* Hero */}
       <section className="hero-section hero-compact">
         <div className="container">
+          <BackLink fallback="/services" />
           <p className="eyebrow">Υπηρεσία</p>
           <h1>{service.title}</h1>
           <p className="hero-sub">{service.excerpt}</p>
+          {service.image && (
+            <div className="service-hero-image-wrap">
+              <img src={service.image} alt={service.title} className="service-hero-image" />
+            </div>
+          )}
         </div>
       </section>
 
@@ -33,10 +55,11 @@ export default function ServiceSingle() {
       <section className="section">
         <div className="container intro-block">
           <h2>Τι περιλαμβάνει;</h2>
-          <p className="intro-text">
-            [SERVICE_DETAILED_TEXT_PLACEHOLDER — Αναλυτική περιγραφή της
-            υπηρεσίας, της διαδικασίας και του τι μπορεί να περιμένει κανείς.]
-          </p>
+          {detailedParagraphs.map((paragraph) => (
+            <p className="intro-text" key={paragraph}>
+              {paragraph}
+            </p>
+          ))}
         </div>
       </section>
 
@@ -46,10 +69,9 @@ export default function ServiceSingle() {
           <p className="eyebrow">Σε ποιον απευθύνεται</p>
           <h2>Μπορεί να σε βοηθήσει αν...</h2>
           <ul className="support-list">
-            <li>Νιώθεις ότι κάτι σε κρατάει πίσω</li>
-            <li>Αντιμετωπίζεις δυσκολίες στις σχέσεις σου</li>
-            <li>Θέλεις να κατανοήσεις καλύτερα τον εαυτό σου</li>
-            <li>Περνάς μια δύσκολη περίοδο και χρειάζεσαι στήριξη</li>
+            {supportPoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
           </ul>
         </div>
       </section>
@@ -89,9 +111,7 @@ export default function ServiceSingle() {
       <section className="section cta-section">
         <div className="container cta-block">
           <h2>Θέλεις να ξεκινήσεις;</h2>
-          <p>
-            Κλείσε μια πρώτη συνεδρία και ξεκίνα τη δική σου διαδρομή.
-          </p>
+          <p>{closingText}</p>
           <Link to="/contact" className="btn btn-primary btn-lg">
             Κλείσε Ραντεβού
           </Link>
