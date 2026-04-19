@@ -4,6 +4,16 @@ import { siteData } from '../../data/site'
 export default function Header() {
   return (
     <header className="site-header">
+      <div className="header-topbar">
+        <div className="container topbar-inner">
+          <p>{siteData.shortLocation}</p>
+          <div className="topbar-links">
+            <a href={`tel:${siteData.phone.replace(/\s/g, '')}`}>{siteData.phone}</a>
+            <a href={`mailto:${siteData.email}`}>{siteData.email}</a>
+          </div>
+        </div>
+      </div>
+
       <div className="container header-inner">
         <Link to="/" className="site-logo">
           <span className="site-logo-mark">AT</span>
