@@ -688,6 +688,14 @@ p {
   font-size: 0.82rem;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* ---- CTA Section ---- */
 .cta-section {
   background: var(--primary);

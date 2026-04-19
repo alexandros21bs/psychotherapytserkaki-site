@@ -3,6 +3,9 @@ import { siteData } from '../data/site'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const emailUser = 'adamtserkaki'
+  const emailDomain = 'gmail.com'
+  const obfuscatedEmail = `${emailUser}@${emailDomain}`
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -43,7 +46,7 @@ export default function Contact() {
 
             <div className="contact-detail">
               <h3>Email</h3>
-              <a href={`mailto:${siteData.email}`}>{siteData.email}</a>
+              <a href={`mailto:${obfuscatedEmail}`}>{obfuscatedEmail}</a>
             </div>
 
             <div className="contact-detail">
@@ -61,6 +64,11 @@ export default function Contact() {
           {/* Form */}
           <form className="contact-form" onSubmit={handleSubmit}>
             <h2>Φόρμα Επικοινωνίας</h2>
+
+            <div className="hp-field" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input type="text" id="website" name="website" tabIndex="-1" autoComplete="off" />
+            </div>
 
             <div className="form-group">
               <label htmlFor="name">Ονοματεπώνυμο</label>

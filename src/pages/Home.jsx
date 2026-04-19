@@ -232,6 +232,16 @@ export default function Home() {
 
           <form className="newsletter-form" action="[FORM_ACTION_PLACEHOLDER]" method="post">
             <label htmlFor="newsletter-email">Email</label>
+            <div className="hp-field" aria-hidden="true">
+              <label htmlFor="newsletter-website">Website</label>
+              <input
+                type="text"
+                id="newsletter-website"
+                name="website"
+                tabIndex="-1"
+                autoComplete="off"
+              />
+            </div>
             <div className="newsletter-input-row">
               <input
                 id="newsletter-email"

@@ -2,6 +2,9 @@ import { siteData } from '../../data/site'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const emailUser = 'adamtserkaki'
+  const emailDomain = 'gmail.com'
+  const obfuscatedEmail = `${emailUser}@${emailDomain}`
 
   return (
     <footer className="site-footer">
@@ -14,7 +17,9 @@ export default function Footer() {
         <div>
           <p>{siteData.shortLocation}</p>
           <p>{siteData.phone}</p>
-          <p>{siteData.email}</p>
+          <p>
+            <a href={`mailto:${obfuscatedEmail}`}>{obfuscatedEmail}</a>
+          </p>
         </div>
       </div>
 
