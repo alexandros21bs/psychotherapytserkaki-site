@@ -312,6 +312,77 @@ p {
   background: var(--surface);
 }
 
+/* ---- Section Header ---- */
+.section-header {
+  max-width: 600px;
+  margin-bottom: 32px;
+}
+
+.section-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* ---- Heading Muted ---- */
+.heading-muted {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.65em;
+}
+
+/* ---- Split Grid ---- */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.split-media .hero-image-placeholder.ratio-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* ---- Card Icon ---- */
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+/* ---- Trust Number ---- */
+.trust-number {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--line);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+/* ---- CTA Eyebrow ---- */
+.cta-eyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---- FAQ Container ---- */
+.faq-container {
+  max-width: 720px;
+}
+
+.faq-item dd {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
 /* ---- Card Hover ---- */
 .card-hover {
   display: block;
@@ -344,6 +415,19 @@ p {
   border: 1px solid var(--line);
   border-radius: 12px;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.approach-list li strong {
+  font-size: 1rem;
+}
+
+.approach-list li span {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 /* ---- Trust ---- */
@@ -509,6 +593,10 @@ p {
 
   .hero-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .split-grid {
+    grid-template-columns: 5fr 7fr;
   }
 
   .approach-grid {
