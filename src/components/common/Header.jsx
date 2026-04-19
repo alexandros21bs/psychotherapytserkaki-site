@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { siteData } from '../../data/site'
+import ScrollUI from './ScrollUI'
 
 export default function Header() {
   return (
@@ -33,6 +34,8 @@ export default function Header() {
           </NavLink>
         </nav>
       </div>
+
+      <ScrollUI />
     </header>
   )
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { siteData } from '../data/site'
 import { services } from '../data/services'
 import { faqItems } from '../data/faq'
+import { reviews } from '../data/reviews'
 
 export default function Home() {
   return (
@@ -176,7 +177,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · FAQ Preview */}
+      {/* 6 · Reviews */}
+      <section className="section" aria-label="Αξιολογήσεις">
+        <div className="container">
+          <header className="section-header">
+            <p className="eyebrow">Αξιολογήσεις</p>
+            <h2>Τι λένε άνθρωποι που ξεκίνησαν θεραπεία</h2>
+          </header>
+
+          <div className="reviews-grid">
+            {reviews.map((review) => (
+              <article className="review-card" key={review.id}>
+                <p className="review-quote">"{review.quote}"</p>
+                <p className="review-author">{review.author}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7 · FAQ Preview */}
       <section className="section" aria-label="Συχνές ερωτήσεις">
         <div className="container faq-container">
           <header className="section-header">
@@ -197,7 +217,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7 · Final CTA */}
+      {/* 8 · Newsletter */}
+      <section className="section" aria-label="Newsletter">
+        <div className="container newsletter-wrap">
+          <div className="newsletter-content">
+            <p className="eyebrow">Newsletter</p>
+            <h2>Σύντομες σκέψεις για ψυχική ευεξία</h2>
+            <p>
+              Εγγράψου για να λαμβάνεις αραιά και επιλεγμένα emails με
+              πρακτικές ιδέες, άρθρα και ενημερώσεις σχετικά με τη θεραπευτική
+              διαδικασία.
+            </p>
+          </div>
+
+          <form className="newsletter-form" action="[FORM_ACTION_PLACEHOLDER]" method="post">
+            <label htmlFor="newsletter-email">Email</label>
+            <div className="newsletter-input-row">
+              <input
+                id="newsletter-email"
+                name="email"
+                type="email"
+                placeholder="Το email σου"
+                required
+              />
+              <button type="submit" className="btn btn-primary">
+                Εγγραφή
+              </button>
+            </div>
+            <small>Χωρίς spam. Μπορείς να διαγραφείς οποιαδήποτε στιγμή.</small>
+          </form>
+        </div>
+      </section>
+
+      {/* 9 · Final CTA */}
       <section className="section cta-section" aria-label="Κλείσε ραντεβού">
         <div className="container cta-block">
           <p className="eyebrow cta-eyebrow">Πρώτο βήμα</p>

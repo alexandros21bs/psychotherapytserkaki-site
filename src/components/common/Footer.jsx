@@ -21,7 +21,9 @@ export default function Footer() {
       <div className="footer-copyright">
         <div className="container footer-copyright-inner">
           <p>
-            Copyright {currentYear} {siteData.brandName}. All rights reserved.
+            <span>Copyright {currentYear} {siteData.brandName}. All rights reserved.</span>
+            <span className="copyright-sep">|</span>
+            <span className="copyright-powered">Powered by Web Host Pro</span>
           </p>
         </div>
       </div>

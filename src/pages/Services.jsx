@@ -26,6 +26,7 @@ export default function Services() {
                 className="card card-hover card-service"
                 key={service.slug}
               >
+                <div className="card-service-image">[IMAGE_PLACEHOLDER]</div>
                 <h3>{service.title}</h3>
                 <p>{service.excerpt}</p>
                 <span className="text-link">Μάθε περισσότερα →</span>
