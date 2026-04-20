@@ -1,6 +1,6 @@
-import individualTherapyImage from '../../person-psychological-therapy.jpg'
-import couplesTherapyImage from '../../ze2.jpg'
-import familyTherapyImage from '../../oi2.jpg'
+import individualTherapyImage from '../../person-psychological-therapy.webp'
+import couplesTherapyImage from '../../ze2.webp'
+import familyTherapyImage from '../../oi2.webp'
 
 export const services = [
   {

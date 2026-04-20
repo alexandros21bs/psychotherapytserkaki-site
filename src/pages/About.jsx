@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { siteData } from '../data/site'
 import BackLink from '../components/common/BackLink'
-import approachImage from '../../ad1.jpg'
-import profileImage from '../../ADAM.jpg'
+import approachImage from '../../ad1.webp'
+import profileImage from '../../ADAM.webp'
 
 export default function About() {
   return (

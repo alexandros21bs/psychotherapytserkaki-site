@@ -4,8 +4,8 @@ import { services } from '../data/services'
 import { faqItems } from '../data/faq'
 import { googleReviewsMeta, reviews } from '../data/reviews'
 import { latestPosts } from '../data/posts'
-import introImage from '../../dad.jpg'
-import heroImage from '../../ADAM.jpg'
+import introImage from '../../dad.webp'
+import heroImage from '../../ADAM.webp'
 
 export default function Home() {
   return (

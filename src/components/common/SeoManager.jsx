@@ -5,12 +5,45 @@ import { posts } from '../../data/posts'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
 const MAX_TITLE_LENGTH = 60
+const MIN_DESCRIPTION_LENGTH = 150
+const MAX_DESCRIPTION_LENGTH = 160
 
 function truncateTitle(title) {
   if (title.length <= MAX_TITLE_LENGTH) {
     return title
   }
   return `${title.slice(0, MAX_TITLE_LENGTH - 1).trim()}…`
+}
+
+function normalizeDescription(description) {
+  const cleanDescription = description.replace(/\s+/g, ' ').trim()
+
+  if (cleanDescription.length >= MIN_DESCRIPTION_LENGTH && cleanDescription.length <= MAX_DESCRIPTION_LENGTH) {
+    return cleanDescription
+  }
+
+  if (cleanDescription.length > MAX_DESCRIPTION_LENGTH) {
+    return `${cleanDescription.slice(0, MAX_DESCRIPTION_LENGTH - 1).trim()}…`
+  }
+
+  const fillers = [
+    ' Κλείσε πρώτη συνεδρία δια ζώσης ή online.',
+    ' Δες αναλυτικά υπηρεσίες και συχνές ερωτήσεις.',
+    ' Επικοινώνησε για ασφαλές και υποστηρικτικό πλαίσιο.',
+  ]
+
+  let extended = cleanDescription
+  let i = 0
+  while (extended.length < MIN_DESCRIPTION_LENGTH) {
+    extended = `${extended}${fillers[i % fillers.length]}`
+    i += 1
+  }
+
+  if (extended.length > MAX_DESCRIPTION_LENGTH) {
+    return `${extended.slice(0, MAX_DESCRIPTION_LENGTH - 1).trim()}…`
+  }
+
+  return extended
 }
 
 function getSeoByPath(pathname) {
@@ -148,7 +181,8 @@ export default function SeoManager() {
       descriptionMeta.setAttribute('name', 'description')
       document.head.appendChild(descriptionMeta)
     }
-    descriptionMeta.setAttribute('content', seo.description)
+    const normalizedDescription = normalizeDescription(seo.description)
+    descriptionMeta.setAttribute('content', normalizedDescription)
 
     let canonicalLink = document.querySelector('link[rel="canonical"]')
     if (!canonicalLink) {
@@ -159,7 +193,7 @@ export default function SeoManager() {
     canonicalLink.setAttribute('href', `${BASE_URL}${pathname}`)
 
     setMetaTag('meta[property="og:title"]', 'content', truncateTitle(seo.title))
-    setMetaTag('meta[property="og:description"]', 'content', seo.description)
+    setMetaTag('meta[property="og:description"]', 'content', normalizedDescription)
     setMetaTag('meta[property="og:url"]', 'content', `${BASE_URL}${pathname}`)
     setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image')
   }, [pathname])
