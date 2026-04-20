@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 import SeoManager from '../components/common/SeoManager'
+import ScrollUI from '../components/common/ScrollUI'
 
 export default function MainLayout() {
   return (
@@ -12,6 +13,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <ScrollUI />
     </>
   )
 }

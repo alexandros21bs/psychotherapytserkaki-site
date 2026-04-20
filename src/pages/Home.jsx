@@ -244,48 +244,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 · Newsletter */}
-      <section className="section" aria-label="Newsletter">
-        <div className="container newsletter-wrap">
-          <div className="newsletter-content">
-            <p className="eyebrow">Newsletter</p>
-            <h2>Σύντομες σκέψεις για ψυχική ευεξία</h2>
-            <p>
-              Εγγράψου για να λαμβάνεις αραιά και επιλεγμένα emails με
-              πρακτικές ιδέες, άρθρα και ενημερώσεις σχετικά με τη θεραπευτική
-              διαδικασία.
-            </p>
-          </div>
-
-          <form className="newsletter-form" action="[FORM_ACTION_PLACEHOLDER]" method="post">
-            <label htmlFor="newsletter-email">Email</label>
-            <div className="hp-field" aria-hidden="true">
-              <label htmlFor="newsletter-website">Website</label>
-              <input
-                type="text"
-                id="newsletter-website"
-                name="website"
-                tabIndex="-1"
-                autoComplete="off"
-              />
-            </div>
-            <div className="newsletter-input-row">
-              <input
-                id="newsletter-email"
-                name="email"
-                type="email"
-                placeholder="Το email σου"
-                required
-              />
-              <button type="submit" className="btn btn-primary">
-                Εγγραφή
-              </button>
-            </div>
-            <small>Χωρίς spam. Μπορείς να διαγραφείς οποιαδήποτε στιγμή.</small>
-          </form>
-        </div>
-      </section>
-
       {/* 9 · Final CTA */}
       <section className="section cta-section" aria-label="Κλείσε ραντεβού">
         <div className="container cta-block">
