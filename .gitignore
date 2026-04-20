@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 _originals
+art*.jpg
+art*.png
+articles*.jpg
