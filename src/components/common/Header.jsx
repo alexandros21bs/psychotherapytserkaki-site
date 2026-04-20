@@ -24,20 +24,20 @@ export default function Header() {
           </div>
 
           <div className="topbar-center">
-            <div className="topbar-item topbar-socials" aria-label="Social στοιχεία">
-              <a href="https://instagram.com/adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link">
+            <div className="topbar-item topbar-socials" role="group" aria-label="Social στοιχεία">
+              <a href="https://instagram.com/adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link" aria-label="Instagram" title="Instagram">
                 <svg className="topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
                   <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
                   <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" />
                 </svg>
               </a>
-              <a href="https://facebook.com/adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link">
+              <a href="https://facebook.com/adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link" aria-label="Facebook" title="Facebook">
                 <svg className="topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M14.5 7h2V4h-2.4C11.9 4 10.5 5.4 10.5 7.8V10H8v3h2.5v7h3v-7h2.5l.5-3h-3V8c0-.6.4-1 1-1z" fill="currentColor" />
                 </svg>
               </a>
-              <a href="https://tiktok.com/@adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link">
+              <a href="https://tiktok.com/@adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link" aria-label="TikTok" title="TikTok">
                 <svg className="topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M14 4v9.2a3.2 3.2 0 11-2.3-3.1V7.7a5.5 5.5 0 105.5 5.5V9.3c1 .8 2.2 1.3 3.6 1.4V8.3c-1.4-.2-2.7-1-3.6-2.1-.5-.7-.8-1.5-.9-2.2H14z" fill="currentColor" />
                 </svg>

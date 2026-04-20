@@ -286,16 +286,16 @@ export default function Home() {
             <h2 className="faq-title-one-line">Ό,τι μπορεί να αναρωτιέσαι</h2>
           </header>
 
-          <dl className="faq-list">
+          <div className="faq-list">
             {faqItems.map((item, i) => (
               <details className="faq-item" key={i} open={i === 0}>
                 <summary>
                   <span>{item.question}</span>
                 </summary>
-                <dd>{item.answer}</dd>
+                <p className="faq-answer">{item.answer}</p>
               </details>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 

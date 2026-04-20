@@ -2,7 +2,7 @@
   --bg: #f6f1eb;
   --surface: #fffaf6;
   --text: #2f2a26;
-  --muted: #6b625c;
+  --muted: #5b524b;
   --line: #ddd1c7;
   --primary: #8b6f5a;
   --primary-dark: #6f5746;
@@ -56,7 +56,7 @@ main {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--text);
 }
 
 .intro-eyebrow-large {
@@ -107,7 +107,7 @@ p {
 
 .header-topbar {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  background: var(--primary);
+  background: var(--primary-dark);
 }
 
 .topbar-inner {
@@ -156,7 +156,7 @@ p {
 .topbar-link {
   margin: 0;
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #fff;
 }
 
 .topbar-link {
@@ -180,7 +180,7 @@ p {
   justify-content: center;
   width: 28px;
   height: 28px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #fff;
   text-decoration: none;
 }
 
@@ -748,13 +748,13 @@ p {
 
 /* ---- Buttons ---- */
 .btn-outline {
-  border: 1.5px solid var(--primary);
-  color: var(--primary);
+  border: 1.5px solid var(--primary-dark);
+  color: var(--primary-dark);
   background: transparent;
 }
 
 .btn-outline:hover {
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
 }
 
@@ -778,7 +778,7 @@ p {
 .text-link {
   display: inline-block;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primary-dark);
   margin-top: 4px;
   transition: 0.2s ease;
 }
@@ -969,14 +969,14 @@ p {
   font-family: "Playfair Display", Georgia, serif;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--line);
+  color: var(--primary-dark);
   margin-bottom: 8px;
   line-height: 1;
 }
 
 /* ---- CTA Eyebrow ---- */
 .cta-eyebrow {
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
 }
 
 /* ---- FAQ Container ---- */
@@ -984,7 +984,7 @@ p {
   max-width: 720px;
 }
 
-.faq-item dd {
+.faq-answer {
   margin: 10px 0 0;
   color: var(--muted);
 }
@@ -1298,7 +1298,7 @@ p {
 
 /* ---- CTA Section ---- */
 .cta-section {
-  background: var(--primary);
+  background: var(--primary-dark);
 }
 
 .cta-block {
@@ -1312,7 +1312,7 @@ p {
 }
 
 .cta-block p {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .cta-section .btn-primary {

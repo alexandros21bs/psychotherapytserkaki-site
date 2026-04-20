@@ -24,16 +24,16 @@ export default function Faq() {
                 <h2>{section.title}</h2>
               </header>
 
-              <dl className="faq-list">
+              <div className="faq-list">
                 {section.items.map((item, i) => (
                   <details className="faq-item" key={`${section.title}-${i}`}>
                     <summary>
                       <span>{item.question}</span>
                     </summary>
-                    <dd>{item.answer}</dd>
+                    <p className="faq-answer">{item.answer}</p>
                   </details>
                 ))}
-              </dl>
+              </div>
             </section>
           ))}
         </div>
