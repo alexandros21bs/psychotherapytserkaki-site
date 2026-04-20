@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "check:links": "node scripts/check-links.mjs",
     "preview": "vite preview",
     "deploy": "vite build && rsync -avz --delete -e 'ssh -p 65002' dist/ u210865293@82.25.102.11:~/domains/psychotherapytserkaki.gr/public_html/"
   },
@@ -24,6 +26,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "sharp": "^0.34.5",
     "vite": "^8.0.4"
   }
 }

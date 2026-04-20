@@ -1,14 +1,24 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { services } from '../../data/services'
+import { posts } from '../../data/posts'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
+const MAX_TITLE_LENGTH = 60
+
+function truncateTitle(title) {
+  if (title.length <= MAX_TITLE_LENGTH) {
+    return title
+  }
+  return `${title.slice(0, MAX_TITLE_LENGTH - 1).trim()}…`
+}
 
 function getSeoByPath(pathname) {
   if (pathname === '/') {
     return {
-      title: 'Αδαμαντία Τσερκάκη | Συνθετική Ψυχοθεραπεύτρια',
+      title: 'Αδαμαντία Τσερκάκη | Ψυχοθεραπεία Χανιά',
       description:
-        'Ψυχοθεραπεία στα Χανιά με ασφάλεια, εμπιστοσύνη και ενσυναίσθηση. Δια ζώσης και online συνεδρίες για ατομική, ζεύγους και οικογενειακή θεραπεία.',
+        'Ψυχοθεραπεία στα Χανιά με ασφάλεια και ενσυναίσθηση. Κλείσε πρώτη συνεδρία δια ζώσης ή online.',
     }
   }
 
@@ -16,7 +26,7 @@ function getSeoByPath(pathname) {
     return {
       title: 'Σχετικά | Αδαμαντία Τσερκάκη',
       description:
-        'Γνωρίστε τη φιλοσοφία και την προσέγγιση της Αδαμαντίας Τσερκάκη. Συνθετική ψυχοθεραπεία με σεβασμό, ασφάλεια και ανθρώπινη παρουσία.',
+        'Γνώρισε την προσέγγιση, τις αξίες και το υπόβαθρο της Αδαμαντίας Τσερκάκη στη συνθετική ψυχοθεραπεία.',
     }
   }
 
@@ -24,15 +34,25 @@ function getSeoByPath(pathname) {
     return {
       title: 'Υπηρεσίες Ψυχοθεραπείας | Αδαμαντία Τσερκάκη',
       description:
-        'Ατομική, ζεύγους και οικογενειακή θεραπεία με εξατομικευμένη προσέγγιση. Ένα ασφαλές πλαίσιο κατανόησης, επεξεργασίας και προσωπικής ανάπτυξης.',
+        'Ατομική, ζεύγους και οικογενειακή θεραπεία με εξατομικευμένη προσέγγιση. Βρες τη στήριξη που σου ταιριάζει.',
     }
   }
 
   if (pathname.startsWith('/services/')) {
+    const slug = pathname.split('/')[2]
+    const service = services.find((item) => item.slug === slug)
+
+    if (service) {
+      return {
+        title: truncateTitle(`${service.title} | Αδαμαντία Τσερκάκη`),
+        description: service.excerpt,
+      }
+    }
+
     return {
       title: 'Υπηρεσία Ψυχοθεραπείας | Αδαμαντία Τσερκάκη',
       description:
-        'Αναλυτικές πληροφορίες για τη θεραπευτική υπηρεσία και το πλαίσιο υποστήριξης. Κλείστε πρώτη συνεδρία με ασφάλεια και εμπιστοσύνη.',
+        'Δες αναλυτικά τη θεραπευτική υπηρεσία και επίλεξε το κατάλληλο πλαίσιο υποστήριξης για εσένα.',
     }
   }
 
@@ -40,15 +60,25 @@ function getSeoByPath(pathname) {
     return {
       title: 'Blog Ψυχοθεραπείας | Αδαμαντία Τσερκάκη',
       description:
-        'Άρθρα για άγχος, σχέσεις και ψυχική ευεξία με πρακτική και ανθρώπινη προσέγγιση. Διαβάστε σκέψεις και εργαλεία για την καθημερινότητα.',
+        'Άρθρα για άγχος, σχέσεις και ψυχική ευεξία με πρακτική προσέγγιση. Διάβασε χρήσιμες ιδέες για την καθημερινότητα.',
     }
   }
 
   if (pathname.startsWith('/blog/')) {
+    const slug = pathname.split('/')[2]
+    const post = posts.find((item) => item.slug === slug)
+
+    if (post) {
+      return {
+        title: truncateTitle(post.seoTitle),
+        description: post.metaDescription,
+      }
+    }
+
     return {
       title: 'Άρθρο | Αδαμαντία Τσερκάκη',
       description:
-        'Διαβάστε άρθρο ψυχοθεραπείας με πρακτικές ιδέες και ουσιαστική προσέγγιση για προσωπική κατανόηση και ανάπτυξη.',
+        'Διάβασε άρθρο ψυχοθεραπείας με πρακτικές ιδέες και ουσιαστική προσέγγιση για προσωπική κατανόηση.',
     }
   }
 
@@ -64,15 +94,45 @@ function getSeoByPath(pathname) {
     return {
       title: 'Συχνές Ερωτήσεις | Αδαμαντία Τσερκάκη',
       description:
-        'Απαντήσεις σε συχνές ερωτήσεις για τη θεραπευτική διαδικασία, την πρώτη συνεδρία, τη διάρκεια, τις online συνεδρίες και το πλαίσιο εμπιστευτικότητας.',
+        'Απαντήσεις για πρώτη συνεδρία, διάρκεια, online θεραπεία, εμπιστευτικότητα και πρακτικά θέματα συνεργασίας.',
+    }
+  }
+
+  if (pathname === '/privacy') {
+    return {
+      title: 'Πολιτική Απορρήτου | Αδαμαντία Τσερκάκη',
+      description:
+        'Δες πώς γίνεται η επεξεργασία προσωπικών δεδομένων, ποια δικαιώματα έχεις και πώς επικοινωνείς για GDPR αιτήματα.',
+    }
+  }
+
+  if (pathname === '/terms') {
+    return {
+      title: 'Όροι Χρήσης | Αδαμαντία Τσερκάκη',
+      description:
+        'Ενημερώσου για τους όρους χρήσης του ιστότοπου, τα πνευματικά δικαιώματα και τους κανόνες ορθής χρήσης περιεχομένου.',
     }
   }
 
   return {
     title: 'Σελίδα | Αδαμαντία Τσερκάκη',
     description:
-      'Ψυχοθεραπεία με σεβασμό, εμπιστοσύνη και ανθρώπινη παρουσία. Δείτε τις υπηρεσίες και επικοινωνήστε για πρώτο ραντεβού.',
+      'Ψυχοθεραπεία με σεβασμό και εμπιστοσύνη. Δες τις υπηρεσίες και επικοινώνησε για πρώτο ραντεβού.',
   }
+}
+
+function setMetaTag(selector, attribute, value) {
+  let element = document.querySelector(selector)
+  if (!element) {
+    element = document.createElement('meta')
+    if (selector.includes('property=')) {
+      element.setAttribute('property', selector.match(/property="([^"]+)"/)?.[1] || '')
+    } else {
+      element.setAttribute('name', selector.match(/name="([^"]+)"/)?.[1] || '')
+    }
+    document.head.appendChild(element)
+  }
+  element.setAttribute(attribute, value)
 }
 
 export default function SeoManager() {
@@ -80,7 +140,7 @@ export default function SeoManager() {
 
   useEffect(() => {
     const seo = getSeoByPath(pathname)
-    document.title = seo.title
+    document.title = truncateTitle(seo.title)
 
     let descriptionMeta = document.querySelector('meta[name="description"]')
     if (!descriptionMeta) {
@@ -97,6 +157,11 @@ export default function SeoManager() {
       document.head.appendChild(canonicalLink)
     }
     canonicalLink.setAttribute('href', `${BASE_URL}${pathname}`)
+
+    setMetaTag('meta[property="og:title"]', 'content', truncateTitle(seo.title))
+    setMetaTag('meta[property="og:description"]', 'content', seo.description)
+    setMetaTag('meta[property="og:url"]', 'content', `${BASE_URL}${pathname}`)
+    setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image')
   }, [pathname])
 
   return null

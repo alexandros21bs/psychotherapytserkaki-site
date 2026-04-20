@@ -11,7 +11,7 @@ export const posts = [
     seoTitle: 'Τι να περιμένεις από την πρώτη σου συνεδρία | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Μάθε τι συμβαίνει στην πρώτη συνεδρία ψυχοθεραπείας, πώς χτίζεται η εμπιστοσύνη και γιατί δεν χρειάζεται να είσαι "έτοιμος/η" για να ξεκινήσεις.',
-    featuredImage: '/images/blog-custom/articles1.jpg',
+    featuredImage: '/images/blog-custom/articles1.webp',
     featuredImageAlt: 'Ζεστός θεραπευτικός χώρος έτοιμος για πρώτη συνεδρία',
     tags: ['πρώτη συνεδρία', 'ψυχοθεραπεία', 'ασφάλεια', 'εμπιστοσύνη'],
     relatedPosts: ['den-xreiazetai-na-ta-exeis-ola-lymena', 'ti-simainei-synthetiki-psychotherapeia'],
@@ -34,7 +34,7 @@ export const posts = [
     seoTitle: 'Διαχείριση άγχους στην καθημερινότητα | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Πρακτικοί και ρεαλιστικοί τρόποι για τη διαχείριση άγχους στην καθημερινότητα, με έμφαση στη ρύθμιση, την κατανόηση και τη θεραπευτική υποστήριξη.',
-    featuredImage: '/images/blog-custom/articles2.jpg',
+    featuredImage: '/images/blog-custom/articles2.webp',
     featuredImageAlt: 'Άνθρωπος που αναπνέει ήρεμα κοντά σε παράθυρο',
     tags: ['άγχος', 'καθημερινότητα', 'ρύθμιση', 'ψυχική υγεία'],
     relatedPosts: ['yperanalysi-kai-ypersepsi', 'autofrontida-akous-vathytera', 'otan-i-zoi-zita-nea-isorropia'],
@@ -57,7 +57,7 @@ export const posts = [
     seoTitle: 'Δεν χρειάζεται να τα έχεις όλα λυμένα | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Γιατί δεν χρειάζεται να έχεις όλες τις απαντήσεις πριν ξεκινήσεις ψυχοθεραπεία και πώς η έγκαιρη υποστήριξη κάνει διαφορά.',
-    featuredImage: '/images/blog-custom/articles3.jpg',
+    featuredImage: '/images/blog-custom/articles3.webp',
     featuredImageAlt: 'Χέρια που αγγίζουν σημειωματάριο σε ήρεμο γραφείο',
     tags: ['βοήθεια', 'έναρξη θεραπείας', 'αποδοχή', 'υποστήριξη'],
     relatedPosts: ['ti-na-perimeneis-apo-tin-proti-synedria', 'ti-simainei-synthetiki-psychotherapeia'],
@@ -80,7 +80,7 @@ export const posts = [
     seoTitle: 'Αυτοφροντίδα και βαθύτερη ακρόαση | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Τι σημαίνει ουσιαστική αυτοφροντίδα και πώς η βαθύτερη ακρόαση του εαυτού μας ενισχύει τη συναισθηματική ισορροπία.',
-    featuredImage: '/images/blog-custom/art4.jpg',
+    featuredImage: '/images/blog-custom/art4.webp',
     featuredImageAlt: 'Ζεστή σκηνή με τσάι και ημερολόγιο αυτοφροντίδας',
     tags: ['αυτοφροντίδα', 'αυτογνωσία', 'όρια', 'συναισθηματική ισορροπία'],
     relatedPosts: ['diaxeirisi-agxous-stin-kathimerinotita', 'aftoektimisi-kai-esoteriki-axia', 'ta-oria-kai-oi-sxeseis'],
@@ -103,7 +103,7 @@ export const posts = [
     seoTitle: 'Τα όρια στις σχέσεις | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Τι σημαίνουν υγιή όρια στις σχέσεις, γιατί δεν είναι εγωισμός και πώς ενισχύουν την εγγύτητα και τον σεβασμό.',
-    featuredImage: '/images/blog-custom/art5.jpg',
+    featuredImage: '/images/blog-custom/art5.webp',
     featuredImageAlt: 'Δύο άνθρωποι συνομιλούν με ηρεμία σε φωτεινό χώρο',
     tags: ['όρια', 'σχέσεις', 'επικοινωνία', 'σεβασμός'],
     relatedPosts: ['epikoinonia-sto-zevgari', 'aftoektimisi-kai-esoteriki-axia', 'den-xreiazetai-na-ta-exeis-ola-lymena'],
@@ -126,7 +126,7 @@ export const posts = [
     seoTitle: 'Επικοινωνία στο ζευγάρι | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Πώς η δυσκολία στην επικοινωνία επηρεάζει το ζευγάρι και πώς η θεραπεία ζεύγους υποστηρίζει την επανασύνδεση.',
-    featuredImage: '/images/blog-custom/art6.jpg',
+    featuredImage: '/images/blog-custom/art6.webp',
     featuredImageAlt: 'Ζευγάρι σε ήρεμο διάλογο με συμβολική απόσταση που γεφυρώνεται',
     tags: ['ζευγάρι', 'επικοινωνία', 'σύγκρουση', 'θεραπεία ζεύγους'],
     relatedPosts: ['ta-oria-kai-oi-sxeseis', 'oikogeneiaki-therapeia-kai-epikoinonia'],
@@ -149,7 +149,7 @@ export const posts = [
     seoTitle: 'Αυτοεκτίμηση και εσωτερική αξία | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Πώς επηρεάζεται η αυτοεκτίμηση από την προσωπική ιστορία και πώς ενισχύεται μια πιο σταθερή εσωτερική αίσθηση αξίας.',
-    featuredImage: '/images/blog-custom/art7.jpg',
+    featuredImage: '/images/blog-custom/art7.webp',
     featuredImageAlt: 'Άτομο που κοιτάζει τον εαυτό του με ηρεμία σε καθρέφτη',
     tags: ['αυτοεκτίμηση', 'αυτοεικόνα', 'αυτογνωσία', 'συναισθηματική ανθεκτικότητα'],
     relatedPosts: ['autofrontida-akous-vathytera', 'ta-oria-kai-oi-sxeseis', 'den-xreiazetai-na-ta-exeis-ola-lymena'],
@@ -172,7 +172,7 @@ export const posts = [
     seoTitle: 'Απώλεια, αλλαγή και μετάβαση | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Πώς βιώνονται οι απώλειες και οι μεγάλες αλλαγές ζωής και πώς η θεραπεία στηρίζει την εσωτερική ανασύνθεση.',
-    featuredImage: '/images/blog-custom/art8.jpg',
+    featuredImage: '/images/blog-custom/art8.webp',
     featuredImageAlt: 'Μονοπάτι που αλλάζει κατεύθυνση μέσα σε ήρεμο τοπίο',
     tags: ['αλλαγή', 'απώλεια', 'μετάβαση', 'προσαρμογή'],
     relatedPosts: ['diaxeirisi-agxous-stin-kathimerinotita', 'den-xreiazetai-na-ta-exeis-ola-lymena'],
@@ -195,7 +195,7 @@ export const posts = [
     seoTitle: 'Οικογενειακή θεραπεία και επικοινωνία | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Τι είναι η οικογενειακή θεραπεία και πώς βοηθά στην αποκατάσταση της επικοινωνίας και της συνεργασίας μέσα στην οικογένεια.',
-    featuredImage: '/images/blog-custom/art9.jpg',
+    featuredImage: '/images/blog-custom/art9.webp',
     featuredImageAlt: 'Οικογένεια που συζητά σε ασφαλές θεραπευτικό περιβάλλον',
     tags: ['οικογένεια', 'επικοινωνία', 'συνεργασία', 'οικογενειακή θεραπεία'],
     relatedPosts: ['epikoinonia-sto-zevgari', 'ta-oria-kai-oi-sxeseis'],
@@ -218,7 +218,7 @@ export const posts = [
     seoTitle: 'Υπερανάλυση και υπερσκέψη | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Τι κρύβεται πίσω από την υπερσκέψη και πώς η θεραπεία βοηθά στη μείωση της εσωτερικής έντασης και στην ενίσχυση της ηρεμίας.',
-    featuredImage: '/images/blog-custom/art10.jpg',
+    featuredImage: '/images/blog-custom/art10.webp',
     featuredImageAlt: 'Συμβολική απεικόνιση πολλών σκέψεων γύρω από ένα πρόσωπο',
     tags: ['υπερσκέψη', 'άγχος', 'αβεβαιότητα', 'εσωτερική ηρεμία'],
     relatedPosts: ['diaxeirisi-agxous-stin-kathimerinotita', 'autofrontida-akous-vathytera'],
@@ -241,7 +241,7 @@ export const posts = [
     seoTitle: 'Online συνεδρίες και θεραπευτική σχέση | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Μπορεί η online θεραπεία να είναι ουσιαστική; Δες πώς διαμορφώνεται ασφαλές πλαίσιο και τι βοηθά την ποιότητα της θεραπευτικής σχέσης.',
-    featuredImage: '/images/blog-custom/art11.png',
+    featuredImage: '/images/blog-custom/art11.webp',
     featuredImageAlt: 'Οθόνη υπολογιστή με online συνεδρία σε ήρεμο δωμάτιο',
     tags: ['online συνεδρίες', 'θεραπευτική σχέση', 'προσβασιμότητα', 'σταθερότητα'],
     relatedPosts: ['ti-na-perimeneis-apo-tin-proti-synedria', 'ti-simainei-synthetiki-psychotherapeia'],
@@ -264,7 +264,7 @@ export const posts = [
     seoTitle: 'Τι είναι η Συνθετική Ψυχοθεραπεία | Αδαμαντία Τσερκάκη',
     metaDescription:
       'Γνώρισε τη Συνθετική Ψυχοθεραπεία: τι είναι, πώς λειτουργεί και γιατί προσφέρει εξατομικευμένη θεραπευτική στήριξη.',
-    featuredImage: '/images/blog-custom/art112.png',
+    featuredImage: '/images/blog-custom/art112.webp',
     featuredImageAlt: 'Συμβολική σύνθεση σημειώσεων και θεραπευτικών εργαλείων',
     tags: ['συνθετική ψυχοθεραπεία', 'προσέγγιση', 'εξατομίκευση', 'θεραπευτική σχέση'],
     relatedPosts: ['ti-na-perimeneis-apo-tin-proti-synedria', 'online-synedries-kai-therapeutiki-sxesi', 'den-xreiazetai-na-ta-exeis-ola-lymena'],

@@ -118,7 +118,7 @@ export default function Home() {
               >
                 <div className="home-service-media" aria-hidden="true">
                   {service.image ? (
-                    <img src={service.image} alt="" loading="lazy" />
+                    <img src={service.image} alt={service.title} loading="lazy" />
                   ) : (
                     <svg
                       className="home-service-fallback-icon"

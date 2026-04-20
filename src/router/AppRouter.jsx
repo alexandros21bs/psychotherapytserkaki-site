@@ -9,6 +9,8 @@ import Article from '../pages/Article'
 import Faq from '../pages/Faq'
 import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound'
+import Privacy from '../pages/Privacy'
+import Terms from '../pages/Terms'
 
 export default function AppRouter() {
   return (
@@ -22,6 +24,8 @@ export default function AppRouter() {
         <Route path="/blog/:slug" element={<Article />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

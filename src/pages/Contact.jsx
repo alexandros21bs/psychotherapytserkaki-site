@@ -3,9 +3,10 @@ import { siteData } from '../data/site'
 import BackLink from '../components/common/BackLink'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
-  const emailUser = 'adamtserkaki'
-  const emailDomain = 'gmail.com'
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', website: '' })
+  const [statusMessage, setStatusMessage] = useState('')
+  const emailUser = 'info'
+  const emailDomain = 'psychotherapy.gr'
   const obfuscatedEmail = `${emailUser}@${emailDomain}`
 
   useEffect(() => {
@@ -23,7 +24,19 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // [FORM_SUBMIT_HANDLER]
+
+    if (form.website.trim() !== '') {
+      setStatusMessage('Η αποστολή απορρίφθηκε για λόγους ασφάλειας.')
+      return
+    }
+
+    const subject = encodeURIComponent(`Αίτημα επικοινωνίας από ${form.name}`)
+    const body = encodeURIComponent(
+      `Ονοματεπώνυμο: ${form.name}\nEmail: ${form.email}\nΤηλέφωνο: ${form.phone || '-'}\n\nΜήνυμα:\n${form.message}`,
+    )
+
+    window.location.href = `mailto:${obfuscatedEmail}?subject=${subject}&body=${body}`
+    setStatusMessage('Το email σου προετοιμάστηκε. Ολοκλήρωσε την αποστολή από την εφαρμογή email σου.')
   }
 
   return (
@@ -78,7 +91,15 @@ export default function Contact() {
 
             <div className="hp-field" aria-hidden="true">
               <label htmlFor="website">Website</label>
-              <input type="text" id="website" name="website" tabIndex="-1" autoComplete="off" />
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabIndex="-1"
+                autoComplete="off"
+                value={form.website}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="form-group">
@@ -131,6 +152,8 @@ export default function Contact() {
             <button type="submit" className="btn btn-primary btn-lg">
               Αποστολή
             </button>
+
+            {statusMessage && <p className="form-status-message">{statusMessage}</p>}
           </form>
         </div>
       </section>

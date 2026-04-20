@@ -537,8 +537,8 @@ p {
 }
 .footer-copyright-inner p {
   margin: 0;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.84rem;
+  color: #fff;
 }
 .copyright-right {
   text-align: right;
@@ -1526,6 +1526,62 @@ p {
   border-color: var(--primary);
 }
 
+.form-status-message {
+  margin-top: 10px;
+  font-size: 0.92rem;
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.legal-content {
+  max-width: 860px;
+}
+
+.legal-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: clamp(1.2rem, 3.4vw, 1.7rem);
+}
+
+.legal-content p {
+  margin-bottom: 10px;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 65;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.cookie-banner p {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cookie-banner .btn {
+  min-height: 40px;
+  padding: 0 14px;
+}
+
+.cookie-policy-link {
+  margin-right: auto;
+}
+
 /* ---- Responsive ---- */
 @media (min-width: 768px) {
   .hero-section {
@@ -1556,6 +1612,15 @@ p {
   .services-header-actions {
     justify-content: flex-end;
     flex-shrink: 0;
+  }
+
+  .cookie-banner {
+    max-width: 880px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 18px;
+    padding: 16px 18px;
   }
 
   .services-header-cta {
