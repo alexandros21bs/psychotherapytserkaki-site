@@ -5,17 +5,33 @@ export default function ScrollUI() {
   const [showBackTop, setShowBackTop] = useState(false)
 
   useEffect(() => {
+    const header = document.querySelector('.site-header')
+
     function updateHeaderOffset() {
-      const header = document.querySelector('.site-header')
       const headerHeight = header ? header.getBoundingClientRect().height : 0
       document.documentElement.style.setProperty('--header-offset', `${headerHeight}px`)
     }
 
     updateHeaderOffset()
     window.addEventListener('resize', updateHeaderOffset)
+    window.addEventListener('orientationchange', updateHeaderOffset)
+
+    let resizeObserver
+    if (header && 'ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(updateHeaderOffset)
+      resizeObserver.observe(header)
+    }
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(updateHeaderOffset)
+    }
 
     return () => {
       window.removeEventListener('resize', updateHeaderOffset)
+      window.removeEventListener('orientationchange', updateHeaderOffset)
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+      }
     }
   }, [])
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { siteData } from '../data/site'
 import BackLink from '../components/common/BackLink'
 
@@ -7,6 +7,15 @@ export default function Contact() {
   const emailUser = 'adamtserkaki'
   const emailDomain = 'gmail.com'
   const obfuscatedEmail = `${emailUser}@${emailDomain}`
+
+  useEffect(() => {
+    if (window.location.hash === '#contact-form') {
+      const target = document.getElementById('contact-form')
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }, [])
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -64,7 +73,7 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form id="contact-form" className="contact-form" onSubmit={handleSubmit}>
             <h2>Φόρμα Επικοινωνίας</h2>
 
             <div className="hp-field" aria-hidden="true">
