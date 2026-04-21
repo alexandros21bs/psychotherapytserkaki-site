@@ -4,8 +4,6 @@ import { services } from '../data/services'
 import { faqItems } from '../data/faq'
 import { googleReviewsMeta, reviews } from '../data/reviews'
 import { latestPosts } from '../data/posts'
-import introImage from '../../dad.webp'
-import heroImage from '../../ADAM.webp'
 
 export default function Home() {
   return (
@@ -37,10 +35,14 @@ export default function Home() {
 
           <div className="hero-visual">
             <img
-              src={heroImage}
+              src="/images/hero-adam.webp"
               alt="Αδαμαντία Τσερκάκη"
               className="home-hero-image"
               loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width="1080"
+              height="1304"
             />
           </div>
         </div>
@@ -51,10 +53,13 @@ export default function Home() {
         <div className="container split-grid">
           <div className="split-media">
             <img
-              src={introImage}
+              src="/images/intro-dad.webp"
               alt="Αδαμαντία Τσερκάκη"
               className="home-intro-image"
               loading="lazy"
+              decoding="async"
+              width="1200"
+              height="798"
             />
           </div>
 

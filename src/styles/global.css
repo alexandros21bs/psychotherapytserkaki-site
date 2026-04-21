@@ -105,6 +105,13 @@ p {
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  .site-header {
+    backdrop-filter: none;
+    background: rgba(246, 241, 235, 0.98);
+  }
+}
+
 .header-topbar {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   background: var(--primary-dark);
@@ -691,7 +698,7 @@ p {
 
 /* ---- Hero ---- */
 .hero-section {
-  padding: 80px 0 60px;
+  padding: 64px 0 48px;
   background: var(--surface);
 }
 
