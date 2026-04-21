@@ -4,6 +4,7 @@ import { services } from '../../data/services'
 import { posts } from '../../data/posts'
 import { localizePost } from '../../data/posts.i18n'
 import { useLanguage } from '../../context/LanguageContext'
+import { siteData } from '../../data/site'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
 const DEFAULT_OG_IMAGE = `${BASE_URL}/images/hero-adam.webp`
@@ -65,6 +66,51 @@ function toAbsoluteUrl(urlOrPath) {
   return `${BASE_URL}/${urlOrPath}`
 }
 
+function removeElement(selector) {
+  const element = document.querySelector(selector)
+  if (element) {
+    element.remove()
+  }
+}
+
+function setJsonLd(id, payload) {
+  let element = document.querySelector(`script[data-seo-script="${id}"]`)
+
+  if (!payload) {
+    if (element) {
+      element.remove()
+    }
+    return
+  }
+
+  if (!element) {
+    element = document.createElement('script')
+    element.setAttribute('type', 'application/ld+json')
+    element.setAttribute('data-seo-script', id)
+    document.head.appendChild(element)
+  }
+
+  element.textContent = JSON.stringify(payload)
+}
+
+function isKnownPath(pathname) {
+  if (pathname === '/' || pathname === '/about' || pathname === '/services' || pathname === '/blog' || pathname === '/contact' || pathname === '/faq' || pathname === '/privacy' || pathname === '/terms') {
+    return true
+  }
+
+  if (pathname.startsWith('/services/')) {
+    const slug = pathname.split('/')[2]
+    return services.some((item) => item.slug === slug)
+  }
+
+  if (pathname.startsWith('/blog/')) {
+    const slug = pathname.split('/')[2]
+    return posts.some((item) => item.slug === slug)
+  }
+
+  return false
+}
+
 function getSeoByPath(pathname, isEnglish) {
   if (pathname === '/') {
     if (isEnglish) {
@@ -117,8 +163,8 @@ function getSeoByPath(pathname, isEnglish) {
 
     if (service) {
       return {
-        title: truncateTitle(isEnglish ? `${service.title} | Adamantia Tserkaki` : `${service.title} | Αδαμαντία Τσερκάκη`),
-        description: service.excerpt,
+        title: truncateTitle(isEnglish ? `${service.titleEn || service.title} | Adamantia Tserkaki` : `${service.title} | Αδαμαντία Τσερκάκη`),
+        description: isEnglish ? (service.excerptEn || service.excerpt) : service.excerpt,
         ogImage: service.image || '/images/hero-adam.webp',
         ogImageAlt: isEnglish ? (service.titleEn || service.title) : service.title,
       }
@@ -280,6 +326,10 @@ export default function SeoManager() {
 
   useEffect(() => {
     const seo = getSeoByPath(pathname, isEnglish)
+    const knownPath = isKnownPath(pathname)
+    const slug = pathname.split('/')[2]
+    const basePost = pathname.startsWith('/blog/') ? posts.find((item) => item.slug === slug) : null
+    const localizedPost = basePost ? localizePost(basePost, isEnglish) : null
     document.title = truncateTitle(seo.title)
 
     let descriptionMeta = document.querySelector('meta[name="description"]')
@@ -296,8 +346,11 @@ export default function SeoManager() {
     const locale = isEnglish ? 'en_US' : 'el_GR'
     const alternateLocale = isEnglish ? 'el_GR' : 'en_US'
     const normalizedTitle = truncateTitle(seo.title)
+    const robotsContent = knownPath ? 'index,follow,max-image-preview:large' : 'noindex,follow'
 
     descriptionMeta.setAttribute('content', normalizedDescription)
+    setMetaTag('meta[name="author"]', 'content', siteData.brandName)
+    setMetaTag('meta[name="robots"]', 'content', robotsContent)
 
     let canonicalLink = document.querySelector('link[rel="canonical"]')
     if (!canonicalLink) {
@@ -327,6 +380,59 @@ export default function SeoManager() {
 
     if (seo.articlePublishedTime) {
       setMetaTag('meta[property="article:published_time"]', 'content', seo.articlePublishedTime)
+    } else {
+      removeElement('meta[property="article:published_time"]')
+    }
+
+    setJsonLd('site-person', [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: siteData.brandName,
+        jobTitle: isEnglish ? 'Mental Health Counselor / Integrative Couples Therapist' : siteData.title,
+        url: BASE_URL,
+        image: DEFAULT_OG_IMAGE,
+        telephone: siteData.phone,
+        email: siteData.email,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: siteData.address,
+          addressLocality: 'Chania',
+          addressCountry: 'GR',
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: isEnglish ? 'Psychotherapy Tserkaki' : siteData.brandName,
+        url: BASE_URL,
+        inLanguage: isEnglish ? 'en' : 'el',
+        description: normalizedDescription,
+      },
+    ])
+
+    if (localizedPost) {
+      setJsonLd('page-specific', {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: normalizedTitle,
+        description: normalizedDescription,
+        image: [ogImage],
+        datePublished: localizedPost.date,
+        dateModified: localizedPost.date,
+        mainEntityOfPage: absoluteUrl,
+        inLanguage: isEnglish ? 'en' : 'el',
+        author: {
+          '@type': 'Person',
+          name: siteData.brandName,
+        },
+        publisher: {
+          '@type': 'Person',
+          name: siteData.brandName,
+        },
+      })
+    } else {
+      setJsonLd('page-specific', null)
     }
 
     document.documentElement.lang = isEnglish ? 'en' : 'el'
