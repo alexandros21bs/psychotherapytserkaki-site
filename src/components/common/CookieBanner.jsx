@@ -11,7 +11,8 @@ export default function CookieBanner() {
   useEffect(() => {
     const savedConsent = window.localStorage.getItem(CONSENT_KEY)
     if (!savedConsent) {
-      setIsVisible(true)
+      // Avoid calling setState synchronously in effect
+      setTimeout(() => setIsVisible(true), 0)
     }
   }, [])
 

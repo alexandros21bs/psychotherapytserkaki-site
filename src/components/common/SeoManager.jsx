@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext'
 import { siteData } from '../../data/site'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
-const DEFAULT_OG_IMAGE = `${BASE_URL}/images/sos1.png`
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/sos2.png`
 const MAX_TITLE_LENGTH = 60
 const MIN_DESCRIPTION_LENGTH = 150
 const MAX_DESCRIPTION_LENGTH = 160

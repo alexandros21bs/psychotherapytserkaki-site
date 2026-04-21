@@ -44,8 +44,8 @@ export default function About() {
 
           <div className="about-content">
             <p className="eyebrow">{isEnglish ? 'Who I am' : 'Ποια είμαι'}</p>
-            <h2>{siteData.brandName}</h2>
-            <p className="about-subtitle">{siteData.title}</p>
+            <h2>{isEnglish ? 'Adamantia Tserkaki' : siteData.brandName}</h2>
+            <p className="about-subtitle">{isEnglish ? 'Mental Health Counsellor / Integrative Couples Therapist' : siteData.title}</p>
 
             <p>
               {isEnglish
@@ -149,10 +149,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">01</span>
               <h3>{isEnglish ? 'Safety' : 'Ασφάλεια'}</h3>
               <p>
-                Δημιουργώ ένα πλαίσιο μέσα στο οποίο μπορείς να εκφραστείς
-                ελεύθερα, χωρίς φόβο κριτικής. Η εμπιστευτικότητα και η
-                αίσθηση ασφάλειας αποτελούν σταθερή βάση της θεραπευτικής
-                διαδικασίας.
+                {isEnglish
+                  ? 'I create a framework where you can express yourself freely, without fear of judgment. Confidentiality and a sense of safety are a stable foundation of the therapeutic process.'
+                  : 'Δημιουργώ ένα πλαίσιο μέσα στο οποίο μπορείς να εκφραστείς ελεύθερα, χωρίς φόβο κριτικής. Η εμπιστευτικότητα και η αίσθηση ασφάλειας αποτελούν σταθερή βάση της θεραπευτικής διαδικασίας.'}
               </p>
             </article>
 
@@ -160,9 +159,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">02</span>
               <h3>{isEnglish ? 'Empathy' : 'Ενσυναίσθηση'}</h3>
               <p>
-                Ακούω με ουσιαστική προσοχή και ενδιαφέρον. Στόχος δεν είναι
-                να σε κατευθύνω, αλλά να κατανοήσω τον κόσμο σου μέσα από τη
-                δική σου εμπειρία και οπτική.
+                {isEnglish
+                  ? 'I listen with genuine attention and care. The goal is not to direct you, but to understand your world through your own experience and perspective.'
+                  : 'Ακούω με ουσιαστική προσοχή και ενδιαφέρον. Στόχος δεν είναι να σε κατευθύνω, αλλά να κατανοήσω τον κόσμο σου μέσα από τη δική σου εμπειρία και οπτική.'}
               </p>
             </article>
 
@@ -170,8 +169,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">03</span>
               <h3>{isEnglish ? 'Respect' : 'Σεβασμός'}</h3>
               <p>
-                Κάθε άνθρωπος και κάθε ιστορία είναι μοναδικά. Προσεγγίζω
-                κάθε θεραπευτική διαδρομή με σεβασμό, αξιοπρέπεια και αποδοχή.
+                {isEnglish
+                  ? 'Every person and every story is unique. I approach each therapeutic journey with respect, dignity, and acceptance.'
+                  : 'Κάθε άνθρωπος και κάθε ιστορία είναι μοναδικά. Προσεγγίζω κάθε θεραπευτική διαδρομή με σεβασμό, αξιοπρέπεια και αποδοχή.'}
               </p>
             </article>
 
@@ -179,9 +179,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">04</span>
               <h3>{isEnglish ? 'Authenticity' : 'Αυθεντικότητα'}</h3>
               <p>
-                Η θεραπεία δεν είναι μια τυπική διαδικασία ούτε ένας ρόλος
-                που απλώς εκτελείται. Είναι μια γνήσια ανθρώπινη σχέση, με
-                παρουσία, ειλικρίνεια και ουσιαστική σύνδεση.
+                {isEnglish
+                  ? 'Therapy is not a formal procedure or a role that is simply performed. It is a genuine human relationship, with presence, honesty, and meaningful connection.'
+                  : 'Η θεραπεία δεν είναι μια τυπική διαδικασία ούτε ένας ρόλος που απλώς εκτελείται. Είναι μια γνήσια ανθρώπινη σχέση, με παρουσία, ειλικρίνεια και ουσιαστική σύνδεση.'}
               </p>
             </article>
 
@@ -189,9 +189,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">05</span>
               <h3>{isEnglish ? 'Collaboration' : 'Συνεργασία'}</h3>
               <p>
-                Η θεραπευτική πορεία χτίζεται μαζί. Δουλεύουμε σε ένα πλαίσιο
-                συνεργασίας, όπου ο ρυθμός και η κατεύθυνση διαμορφώνονται με
-                βάση τις ανάγκες σου.
+                {isEnglish
+                  ? 'The therapeutic journey is built together. We work within a collaborative framework where the pace and direction are shaped according to your needs.'
+                  : 'Η θεραπευτική πορεία χτίζεται μαζί. Δουλεύουμε σε ένα πλαίσιο συνεργασίας, όπου ο ρυθμός και η κατεύθυνση διαμορφώνονται με βάση τις ανάγκες σου.'}
               </p>
             </article>
 
@@ -199,9 +199,9 @@ export default function About() {
               <span className="value-number" aria-hidden="true">06</span>
               <h3>{isEnglish ? 'Growth' : 'Ανάπτυξη'}</h3>
               <p>
-                Η θεραπεία δεν αφορά μόνο τη διαχείριση μιας δυσκολίας. Αφορά
-                και τη δυνατότητα βαθύτερης κατανόησης, προσωπικής εξέλιξης
-                και σύνδεσης με τον πιο αυθεντικό εαυτό.
+                {isEnglish
+                  ? 'Therapy is not only about managing a difficulty. It is also about the possibility of deeper understanding, personal growth, and connection with your most authentic self.'
+                  : 'Η θεραπεία δεν αφορά μόνο τη διαχείριση μιας δυσκολίας. Αφορά και τη δυνατότητα βαθύτερης κατανόησης, προσωπικής εξέλιξης και σύνδεσης με τον πιο αυθεντικό εαυτό.'}
               </p>
             </article>
           </div>

@@ -17,15 +17,15 @@ export default function Home() {
       <section className="hero-section" aria-label={isEnglish ? 'Introduction' : 'Εισαγωγή'}>
         <div className="container hero-grid">
           <div className="hero-content">
-            <p className="eyebrow">{isEnglish ? 'Psychotherapy · Counseling · Chania' : 'Ψυχοθεραπεία · Συμβουλευτική · Χανιά'}</p>
+            <p className="eyebrow">{isEnglish ? 'Psychotherapy · Counselling · Chania' : 'Ψυχοθεραπεία · Συμβουλευτική · Χανιά'}</p>
             <h1 className="hero-title-small">
               {isEnglish
-                ? 'A safe space to be heard with honesty and reconnect with yourself'
+                ? 'A safe space where you can be truly heard and feel closer to yourself'
                 : 'Ένας ασφαλής χώρος για να ακουστείς με ειλικρίνεια και να σταθείς πιο κοντά στον εαυτό σου'}
             </h1>
             <p className="hero-sub">
               {isEnglish
-                ? 'Psychotherapy is not about ready-made answers. It is about building a stable and meaningful framework where you can process what feels difficult and meet yourself with greater awareness, trust and support.'
+                ? 'Psychotherapy is not about ready-made solutions, quick answers, or a process applied in the same way to everyone, but about creating a steady, safe, and meaningful space where you can give room to what you feel, be genuinely heard without fear of judgment, work through with greater calm and depth the things that trouble you, and approach yourself more meaningfully, with greater awareness, emotional support, trust, understanding, and respect for your own time, your needs, the experiences you carry, and the personal way in which you live through what concerns you, so that through this process you may gradually come to know yourself more deeply, shed light on inner difficulties and patterns, stand with greater honesty before what you are living, and build a steadier, more meaningful, and more authentic relationship with yourself, your needs, your relationships, and your life as a whole.'
                 : 'Η ψυχοθεραπεία δεν αφορά έτοιμες λύσεις, γρήγορες απαντήσεις ή μια διαδικασία που εφαρμόζεται με τον ίδιο τρόπο σε όλους, αλλά τη δημιουργία ενός σταθερού, ασφαλούς και ουσιαστικού πλαισίου, όπου μπορείς να δώσεις χώρο σε όσα νιώθεις, να ακουστείς πραγματικά χωρίς φόβο κριτικής, να επεξεργαστείς με μεγαλύτερη ηρεμία και βάθος όσα σε δυσκολεύουν και να προσεγγίσεις τον εαυτό σου πιο ουσιαστικά, με περισσότερη επίγνωση, συναισθηματική στήριξη, εμπιστοσύνη, κατανόηση και σεβασμό στον δικό σου χρόνο, στις ανάγκες σου, στις εμπειρίες που κουβαλάς και στον προσωπικό τρόπο με τον οποίο βιώνεις όσα σε απασχολούν, ώστε μέσα από αυτή τη διαδικασία να μπορέσεις σταδιακά να αναγνωρίσεις βαθύτερα τον εαυτό σου, να φωτίσεις εσωτερικές δυσκολίες και μοτίβα, να σταθείς με περισσότερη αλήθεια απέναντι σε όσα ζεις και να χτίσεις μια πιο σταθερή, ουσιαστική και αυθεντική σχέση με τον εαυτό σου, τις ανάγκες σου, τις σχέσεις σου και τη ζωή σου συνολικά.'}
             </p>
             <div className="hero-actions">
@@ -78,18 +78,18 @@ export default function Home() {
           <div className="split-text">
             <p className="eyebrow intro-eyebrow-large">{isEnglish ? 'Introduction' : 'Γνωριμία'}</p>
             <h2>
-              <span className="intro-name-one-line title-size-approach-match">{siteData.brandName}</span>
+              <span className="intro-name-one-line title-size-approach-match">{isEnglish ? 'Adamantia Tserkaki' : siteData.brandName}</span>
               <br />
-              <span className="heading-muted">{siteData.title}</span>
+              <span className="heading-muted">{isEnglish ? 'Mental Health Counsellor / Integrative Couples Therapist' : siteData.title}</span>
             </h2>
             <p>
               {isEnglish
-                ? 'I work with adults, couples and families, creating a framework of safety, trust and meaningful collaboration, where each person can speak honestly, feel truly heard and move toward a more grounded and conscious relationship with life.'
+                ? 'I work with adults, couples, and families, creating a space of safety, trust, and meaningful collaboration, where each person can express themselves honestly, feel truly heard, come to understand themselves more deeply, and move forward, at their own pace, toward a steadier, more conscious, and more meaningful relationship with life, their needs, and their relationships. For me, the therapeutic process is not a place of ready-made answers or quick solutions, but a living and human encounter in which one can bring whatever is troubling them, meet their experience with greater honesty, and seek, with support and respect, a way of being that is more meaningful, more grounded, and closer to what they truly need.'
                 : 'Εργάζομαι με ενήλικες, ζευγάρια και οικογένειες, δημιουργώντας ένα πλαίσιο ασφάλειας, εμπιστοσύνης και ουσιαστικής συνεργασίας, όπου ο άνθρωπος μπορεί να εκφραστεί με ειλικρίνεια, να ακουστεί πραγματικά, να κατανοήσει βαθύτερα τον εαυτό του και να προχωρήσει, με τον δικό του ρυθμό, προς μια πιο σταθερή, συνειδητή και ουσιαστική σχέση με τη ζωή, τις ανάγκες και τις σχέσεις του. Για μένα, η θεραπευτική διαδικασία δεν είναι ένας χώρος έτοιμων απαντήσεων ή γρήγορων λύσεων, αλλά μια ζωντανή και ανθρώπινη συνάντηση, μέσα στην οποία μπορεί κανείς να φέρει όσα τον απασχολούν, να σταθεί με περισσότερη αλήθεια απέναντι στην εμπειρία του και να αναζητήσει, με υποστήριξη και σεβασμό, έναν τρόπο ύπαρξης πιο ουσιαστικό, πιο σταθερό και πιο κοντά σε αυτό που πραγματικά έχει ανάγκη.'}
             </p>
             <p>
               {isEnglish
-                ? 'Within this therapeutic setting, change is not treated as pressure to become someone else, but as a deeper process of understanding, inner growth and reconnection with what is authentic and alive within you.'
+                ? 'Within this therapeutic framework, change is not approached as pressure to become someone different, but as a deeper process of understanding, inner maturation, and a meaningful return to what is most true and vital within. It is a journey that gives space not only to difficulty, but also to each person’s possibilities, needs, boundaries, relationships, and inner strengths, so that through understanding and reflection they may gradually build a more authentic relationship with themselves, with others, and with the way they wish to live their life.'
                 : 'Μέσα σε αυτό το θεραπευτικό πλαίσιο, η αλλαγή δεν αντιμετωπίζεται ως πίεση για να γίνει κανείς διαφορετικός, αλλά ως μια βαθύτερη διαδικασία κατανόησης, εσωτερικής ωρίμανσης και ουσιαστικής επιστροφής σε ό,τι είναι πιο αληθινό και ζωτικό μέσα του. Είναι μια πορεία που δίνει χώρο όχι μόνο στη δυσκολία, αλλά και στις δυνατότητες, στις ανάγκες, στα όρια, στις σχέσεις και στις εσωτερικές δυνάμεις του κάθε ανθρώπου, ώστε μέσα από την κατανόηση και την επεξεργασία να μπορεί σταδιακά να χτίσει μια πιο αυθεντική σχέση με τον εαυτό του, με τους άλλους και με τον τρόπο που επιθυμεί να ζει τη ζωή του.'}
             </p>
             <Link to="/about" className="text-link intro-more-link">
@@ -316,7 +316,7 @@ export default function Home() {
           <header className="section-header home-blog-header">
             <div className="home-blog-header-main">
               <p className="eyebrow">Blog</p>
-              <h2 className="blog-title-one-line">Τελευταία άρθρα</h2>
+              <h2 className="blog-title-one-line">{isEnglish ? 'Latest articles' : 'Τελευταία άρθρα'}</h2>
               <p className="section-lead">
                 {isEnglish
                   ? 'A selection of recent articles with reflections and practical insights on emotional life and the therapeutic process.'
@@ -334,7 +334,7 @@ export default function Home() {
           <div className="blog-grid blog-grid-home">
             {localizedLatestPosts.map((post) => (
               <article className="card blog-card" key={post.slug}>
-                <Link to={`/blog/${post.slug}`} className="blog-cover" aria-label={`Άνοιγμα άρθρου ${post.title}`}>
+                <Link to={`/blog/${post.slug}`} className="blog-cover" aria-label={isEnglish ? `Open article ${post.title}` : `Άνοιγμα άρθρου ${post.title}`}>
                   <img src={post.featuredImage} alt={post.featuredImageAlt} loading="lazy" />
                 </Link>
                 <div className="blog-meta-row">

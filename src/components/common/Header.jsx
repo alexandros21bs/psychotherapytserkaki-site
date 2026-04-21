@@ -71,8 +71,8 @@ export default function Header() {
         <Link to="/" className="site-logo">
           <img src="/logo.svg" alt="" className="site-logo-mark" width="64" height="64" />
           <span className="site-logo-text">
-            <strong>{siteData.brandName}</strong>
-            <small>{siteData.title}</small>
+            <strong>{isEnglish ? 'Adamantia Tserkaki' : siteData.brandName}</strong>
+            <small>{isEnglish ? 'Mental Health Counsellor / Integrative Couples Therapist' : siteData.title}</small>
           </span>
         </Link>
 

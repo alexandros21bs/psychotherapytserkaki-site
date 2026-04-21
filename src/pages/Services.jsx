@@ -51,7 +51,7 @@ export default function Services() {
       {/* Trust Block */}
       <section className="section section-alt">
         <div className="container intro-block">
-          <p className="eyebrow">Υποστήριξη</p>
+          <p className="eyebrow">{isEnglish ? 'Support' : 'Υποστήριξη'}</p>
           <h2>{isEnglish ? 'A safe framework for every step' : 'Ένα ασφαλές πλαίσιο για κάθε βήμα'}</h2>
           <p className="intro-text">
             {isEnglish

@@ -12,8 +12,8 @@ export default function Footer() {
 
   function handleNewsletterSubmit(e) {
     e.preventDefault()
-    const subject = encodeURIComponent('Νέα εγγραφή στο Newsletter')
-    const body = encodeURIComponent(`Email εγγραφής: ${newsletterEmail}`)
+    const subject = encodeURIComponent(isEnglish ? 'New newsletter subscription' : 'Νέα εγγραφή στο Newsletter')
+    const body = encodeURIComponent(isEnglish ? `Subscription email: ${newsletterEmail}` : `Email εγγραφής: ${newsletterEmail}`)
     const cc = encodeURIComponent(ccRecipients.join(','))
 
     window.location.href = `mailto:${primaryRecipient}?cc=${cc}&subject=${subject}&body=${body}`
@@ -26,8 +26,8 @@ export default function Footer() {
         {/* Col 1 – Brand */}
         <div className="footer-brand">
           <img src="/logo.svg" alt="" className="footer-logo" width="120" height="120" />
-          <h3 className="footer-brand-name">{siteData.brandName}</h3>
-          <p className="footer-brand-desc">{siteData.title}</p>
+          <h3 className="footer-brand-name">{isEnglish ? 'Adamantia Tserkaki' : siteData.brandName}</h3>
+          <p className="footer-brand-desc">{isEnglish ? 'Mental Health Counsellor / Integrative Couples Therapist' : siteData.title}</p>
         </div>
 
         {/* Col 2 – Πλοήγηση */}
@@ -93,8 +93,8 @@ export default function Footer() {
       {/* ── Bottom: Copyright ── */}
       <div className="footer-copyright">
         <div className="container footer-copyright-inner">
-          <p className="copyright-left">© {currentYear} {siteData.brandName} | psychotherapytserkaki.gr. Με την επιφύλαξη παντός νομίμου δικαιώματος.</p>
-          <p className="copyright-right">Powered by <strong>Web Host Pro Αιγιαλεία</strong> | Web Development, Διαχείριση και Social Media Management | Επίσημος Συνεργάτης</p>
+          <p className="copyright-left">© {currentYear} {isEnglish ? 'Adamantia Tserkaki' : siteData.brandName} | psychotherapytserkaki.gr. {isEnglish ? 'All rights reserved.' : 'Με την επιφύλαξη παντός νομίμου δικαιώματος.'}</p>
+          <p className="copyright-right">{isEnglish ? <>Powered by <strong>Web Host Pro Aigialeia</strong> | Web Development, Management and Social Media Management | Official Partner</> : <>Powered by <strong>Web Host Pro Αιγιαλεία</strong> | Web Development, Διαχείριση και Social Media Management | Επίσημος Συνεργάτης</>}</p>
         </div>
       </div>
     </footer>
