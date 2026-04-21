@@ -93,7 +93,12 @@ async function prerenderRoute(browser, route) {
   // Give SeoManager + Suspense an extra microtask flush.
   await page.evaluate(() => new Promise((r) => setTimeout(r, 50)))
 
-  const html = await page.content()
+  const rawHtml = await page.content()
+  // Restore non-blocking font preload swap (puppeteer's onload fires during render and rewrites rel back to "stylesheet").
+  const html = rawHtml.replace(
+    /<link rel="stylesheet" as="style" href="(https:\/\/fonts\.googleapis\.com[^"]+)"([^>]*)>/g,
+    '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'">'
+  )
   await page.close()
 
   // Determine output path: /about -> dist/about/index.html; / stays dist/index.html.

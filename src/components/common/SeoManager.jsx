@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { services } from '../../data/services'
-import { posts } from '../../data/posts'
-import { localizePost } from '../../data/posts.i18n'
 import { useLanguage } from '../../context/LanguageContext'
 import { siteData } from '../../data/site'
 
@@ -104,8 +102,7 @@ function isKnownPath(pathname) {
   }
 
   if (pathname.startsWith('/blog/')) {
-    const slug = pathname.split('/')[2]
-    return posts.some((item) => item.slug === slug)
+    return true
   }
 
   return false
@@ -201,26 +198,12 @@ function getSeoByPath(pathname, isEnglish) {
   }
 
   if (pathname.startsWith('/blog/')) {
-    const slug = pathname.split('/')[2]
-    const post = posts.find((item) => item.slug === slug)
-    const localizedPost = post ? localizePost(post, isEnglish) : null
-
-    if (localizedPost) {
-      return {
-        title: truncateTitle(localizedPost.seoTitle),
-        description: localizedPost.metaDescription,
-        ogImage: localizedPost.featuredImage,
-        ogImageAlt: localizedPost.featuredImageAlt,
-        ogType: 'article',
-        articlePublishedTime: localizedPost.date,
-      }
-    }
-
     if (isEnglish) {
       return {
         title: 'Article | Adamantia Tserkaki',
         description:
           'Read psychotherapy insights with practical ideas for emotional understanding and everyday balance.',
+        ogType: 'article',
       }
     }
 
@@ -228,6 +211,7 @@ function getSeoByPath(pathname, isEnglish) {
       title: 'Άρθρο | Αδαμαντία Τσερκάκη',
       description:
         'Διάβασε άρθρο ψυχοθεραπείας με πρακτικές ιδέες και ουσιαστική προσέγγιση για προσωπική κατανόηση.',
+      ogType: 'article',
     }
   }
 
@@ -320,16 +304,8 @@ function setMetaTag(selector, attribute, value) {
   element.setAttribute(attribute, value)
 }
 
-export default function SeoManager() {
-  const { pathname } = useLocation()
-  const { isEnglish } = useLanguage()
-
-  useEffect(() => {
-    const seo = getSeoByPath(pathname, isEnglish)
+function applySeo(seo, pathname, isEnglish, basePost) {
     const knownPath = isKnownPath(pathname)
-    const slug = pathname.split('/')[2]
-    const basePost = pathname.startsWith('/blog/') ? posts.find((item) => item.slug === slug) : null
-    const localizedPost = basePost ? localizePost(basePost, isEnglish) : null
     document.title = truncateTitle(seo.title)
 
     let descriptionMeta = document.querySelector('meta[name="description"]')
@@ -411,15 +387,15 @@ export default function SeoManager() {
       },
     ])
 
-    if (localizedPost) {
+    if (basePost) {
       setJsonLd('page-specific', {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: normalizedTitle,
         description: normalizedDescription,
         image: [ogImage],
-        datePublished: localizedPost.date,
-        dateModified: localizedPost.date,
+        datePublished: basePost.date,
+        dateModified: basePost.date,
         mainEntityOfPage: absoluteUrl,
         inLanguage: isEnglish ? 'en' : 'el',
         author: {
@@ -436,6 +412,44 @@ export default function SeoManager() {
     }
 
     document.documentElement.lang = isEnglish ? 'en' : 'el'
+}
+
+export default function SeoManager() {
+  const { pathname } = useLocation()
+  const { isEnglish } = useLanguage()
+
+  useEffect(() => {
+    let cancelled = false
+    const seo = getSeoByPath(pathname, isEnglish)
+
+    applySeo(seo, pathname, isEnglish, null)
+
+    if (pathname.startsWith('/blog/')) {
+      const slug = pathname.split('/')[2]
+      // Load post data on demand to keep the initial bundle small.
+      Promise.all([
+        import('../../data/posts'),
+        isEnglish ? import('../../data/posts.i18n') : Promise.resolve(null),
+      ]).then(([postsMod, i18nMod]) => {
+        if (cancelled) return
+        const basePost = postsMod.posts.find((item) => item.slug === slug)
+        if (!basePost) return
+        const post = i18nMod ? i18nMod.localizePost(basePost, true) : basePost
+        const postSeo = {
+          title: truncateTitle(post.seoTitle),
+          description: post.metaDescription,
+          ogImage: post.featuredImage,
+          ogImageAlt: post.featuredImageAlt,
+          ogType: 'article',
+          articlePublishedTime: post.date,
+        }
+        applySeo(postSeo, pathname, isEnglish, basePost)
+      })
+    }
+
+    return () => {
+      cancelled = true
+    }
   }, [pathname, isEnglish])
 
   return null
