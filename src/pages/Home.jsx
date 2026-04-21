@@ -85,12 +85,12 @@ export default function Home() {
             <p>
               {isEnglish
                 ? 'I work with adults, couples and families, creating a framework of safety, trust and meaningful collaboration, where each person can speak honestly, feel truly heard and move toward a more grounded and conscious relationship with life.'
-                : 'Εργάζομαι με ενήλικες, ζευγάρια και οικογένειες, δημιουργώντας ένα πλαίσιο ασφάλειας, εμπιστοσύνης και ουσιαστικής συνεργασίας, όπου ο άνθρωπος μπορεί να εκφραστεί με ειλικρίνεια, να ακουστεί πραγματικά, να κατανοήσει βαθύτερα τον εαυτό του και να προχωρήσει, με τον δικό του ρυθμό, προς μια πιο σταθερή, συνειδητή και ουσιαστική σχέση με τη ζωή, τις ανάγκες και τις σχέσεις του.'}
+                : 'Εργάζομαι με ενήλικες, ζευγάρια και οικογένειες, δημιουργώντας ένα πλαίσιο ασφάλειας, εμπιστοσύνης και ουσιαστικής συνεργασίας, όπου ο άνθρωπος μπορεί να εκφραστεί με ειλικρίνεια, να ακουστεί πραγματικά, να κατανοήσει βαθύτερα τον εαυτό του και να προχωρήσει, με τον δικό του ρυθμό, προς μια πιο σταθερή, συνειδητή και ουσιαστική σχέση με τη ζωή, τις ανάγκες και τις σχέσεις του. Για μένα, η θεραπευτική διαδικασία δεν είναι ένας χώρος έτοιμων απαντήσεων ή γρήγορων λύσεων, αλλά μια ζωντανή και ανθρώπινη συνάντηση, μέσα στην οποία μπορεί κανείς να φέρει όσα τον απασχολούν, να σταθεί με περισσότερη αλήθεια απέναντι στην εμπειρία του και να αναζητήσει, με υποστήριξη και σεβασμό, έναν τρόπο ύπαρξης πιο ουσιαστικό, πιο σταθερό και πιο κοντά σε αυτό που πραγματικά έχει ανάγκη.'}
             </p>
             <p>
               {isEnglish
                 ? 'Within this therapeutic setting, change is not treated as pressure to become someone else, but as a deeper process of understanding, inner growth and reconnection with what is authentic and alive within you.'
-                : 'Μέσα σε αυτό το θεραπευτικό πλαίσιο, η αλλαγή δεν αντιμετωπίζεται ως πίεση για να γίνει κανείς διαφορετικός, αλλά ως μια βαθύτερη διαδικασία κατανόησης, εσωτερικής ωρίμανσης και ουσιαστικής επιστροφής σε ό,τι είναι πιο αληθινό και ζωτικό μέσα του.'}
+                : 'Μέσα σε αυτό το θεραπευτικό πλαίσιο, η αλλαγή δεν αντιμετωπίζεται ως πίεση για να γίνει κανείς διαφορετικός, αλλά ως μια βαθύτερη διαδικασία κατανόησης, εσωτερικής ωρίμανσης και ουσιαστικής επιστροφής σε ό,τι είναι πιο αληθινό και ζωτικό μέσα του. Είναι μια πορεία που δίνει χώρο όχι μόνο στη δυσκολία, αλλά και στις δυνατότητες, στις ανάγκες, στα όρια, στις σχέσεις και στις εσωτερικές δυνάμεις του κάθε ανθρώπου, ώστε μέσα από την κατανόηση και την επεξεργασία να μπορεί σταδιακά να χτίσει μια πιο αυθεντική σχέση με τον εαυτό του, με τους άλλους και με τον τρόπο που επιθυμεί να ζει τη ζωή του.'}
             </p>
             <Link to="/about" className="text-link intro-more-link">
               {isEnglish ? 'More about me →' : 'Περισσότερα για εμένα →'}
@@ -254,24 +254,6 @@ export default function Home() {
                 <span className="reviews-count">({googleReviewsMeta.total} {isEnglish ? 'reviews' : 'αξιολογήσεις'})</span>
               </div>
             </div>
-            <div className="reviews-google-actions">
-              <a
-                href={googleReviewsMeta.profileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline reviews-google-cta"
-              >
-                {isEnglish ? 'View reviews' : 'Δείτε τις κριτικές'}
-              </a>
-              <a
-                href={googleReviewsMeta.writeReviewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary reviews-google-cta"
-              >
-                {isEnglish ? 'Write a review' : 'Γράψε μια κριτική'}
-              </a>
-            </div>
           </header>
 
           <div className="reviews-grid">
@@ -284,6 +266,25 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="reviews-google-actions">
+            <a
+              href={googleReviewsMeta.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline reviews-google-cta"
+            >
+              {isEnglish ? 'View reviews' : 'Δείτε τις κριτικές'}
+            </a>
+            <a
+              href={googleReviewsMeta.writeReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary reviews-google-cta"
+            >
+              {isEnglish ? 'Write a review' : 'Γράψε μια κριτική'}
+            </a>
           </div>
         </div>
       </section>
