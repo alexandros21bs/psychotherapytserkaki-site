@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useLanguage } from '../../context/LanguageContext'
 
 const CONSENT_KEY = 'ptc-cookie-consent'
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const savedConsent = window.localStorage.getItem(CONSENT_KEY)
@@ -23,20 +25,19 @@ export default function CookieBanner() {
   }
 
   return (
-    <aside className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie ενημέρωση">
+    <aside className="cookie-banner" role="dialog" aria-live="polite" aria-label={t.cookieAria}>
       <p>
-        Χρησιμοποιούμε μόνο απαραίτητα cookies για τη σωστή λειτουργία της σελίδας και αποθηκεύουμε
-        την επιλογή συναίνεσης τοπικά στη συσκευή σου.
+        {t.cookieText}
       </p>
       <div className="cookie-banner-actions">
         <Link to="/privacy" className="text-link cookie-policy-link">
-          Πολιτική Απορρήτου
+          {t.privacyPolicy}
         </Link>
         <button type="button" className="btn btn-outline" onClick={() => handleConsent('declined')}>
-          Απόρριψη
+          {t.reject}
         </button>
         <button type="button" className="btn btn-primary" onClick={() => handleConsent('accepted')}>
-          Αποδοχή
+          {t.accept}
         </button>
       </div>
     </aside>

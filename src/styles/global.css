@@ -735,7 +735,7 @@ p {
 
 .hero-image-placeholder {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   background: var(--line);
   border-radius: var(--radius);
   display: grid;
@@ -746,11 +746,18 @@ p {
 
 .home-hero-image {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
+}
+
+@media (max-width: 767px) {
+  .hero-image-placeholder,
+  .home-hero-image {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* ---- Buttons ---- */

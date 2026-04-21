@@ -1,7 +1,10 @@
 import { Link, NavLink } from 'react-router-dom'
 import { siteData } from '../../data/site'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Header() {
+  const { language, setLanguage, t, isEnglish } = useLanguage()
+
   return (
     <header className="site-header">
       <div className="header-topbar">
@@ -18,13 +21,13 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="topbar-text topbar-link"
               >
-                Μαλεμε Δημος Πλατανια , Chania, Greece
+                {isEnglish ? 'Maleme, Platanias Municipality, Chania, Greece' : 'Μαλεμε Δημος Πλατανια , Chania, Greece'}
               </a>
             </div>
           </div>
 
           <div className="topbar-center">
-            <div className="topbar-item topbar-socials" role="group" aria-label="Social στοιχεία">
+            <div className="topbar-item topbar-socials" role="group" aria-label={t.socialLabel}>
               <a href="https://instagram.com/adamtserkaki" target="_blank" rel="noopener noreferrer" className="topbar-social-link" aria-label="Instagram" title="Instagram">
                 <svg className="topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
@@ -74,16 +77,30 @@ export default function Header() {
         </Link>
 
         <nav className="site-nav">
-          <NavLink to="/">Αρχική</NavLink>
-          <NavLink to="/about">Σχετικά</NavLink>
-          <NavLink to="/services">Υπηρεσίες</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/">{t.navHome}</NavLink>
+          <NavLink to="/about">{t.navAbout}</NavLink>
+          <NavLink to="/services">{t.navServices}</NavLink>
+          <NavLink to="/blog">{t.navBlog}</NavLink>
           <div className="nav-lang-switch" role="group" aria-label="Language selector">
-            <button type="button" className="nav-lang-btn is-active" aria-pressed="true">EL</button>
-            <button type="button" className="nav-lang-btn" aria-pressed="false">ENG</button>
+            <button
+              type="button"
+              className={`nav-lang-btn ${language === 'el' ? 'is-active' : ''}`}
+              aria-pressed={language === 'el'}
+              onClick={() => setLanguage('el')}
+            >
+              EL
+            </button>
+            <button
+              type="button"
+              className={`nav-lang-btn ${language === 'en' ? 'is-active' : ''}`}
+              aria-pressed={language === 'en'}
+              onClick={() => setLanguage('en')}
+            >
+              EN
+            </button>
           </div>
           <NavLink to="/contact" className="btn btn-primary nav-cta">
-            Κλείσε Ραντεβού
+            {t.navContactCta}
           </NavLink>
         </nav>
       </div>

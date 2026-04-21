@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { siteData } from '../data/site'
 import BackLink from '../components/common/BackLink'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', website: '' })
   const [statusMessage, setStatusMessage] = useState('')
-  const emailUser = 'info'
-  const emailDomain = 'psychotherapy.gr'
-  const obfuscatedEmail = `${emailUser}@${emailDomain}`
+  const { t } = useLanguage()
+  const phoneNumber = siteData.phone.replace(/\s/g, '')
+  const primaryRecipient = 'info@psychotheraphy.gr'
+  const ccRecipients = ['adamtserkaki@gmail.com', 'alexandros21bs@gmail.com']
+  const allRecipients = [primaryRecipient, ...ccRecipients]
 
   useEffect(() => {
     if (window.location.hash === '#contact-form') {
@@ -26,7 +29,7 @@ export default function Contact() {
     e.preventDefault()
 
     if (form.website.trim() !== '') {
-      setStatusMessage('Η αποστολή απορρίφθηκε για λόγους ασφάλειας.')
+      setStatusMessage(t.contactSpamRejected)
       return
     }
 
@@ -35,8 +38,9 @@ export default function Contact() {
       `Ονοματεπώνυμο: ${form.name}\nEmail: ${form.email}\nΤηλέφωνο: ${form.phone || '-'}\n\nΜήνυμα:\n${form.message}`,
     )
 
-    window.location.href = `mailto:${obfuscatedEmail}?subject=${subject}&body=${body}`
-    setStatusMessage('Το email σου προετοιμάστηκε. Ολοκλήρωσε την αποστολή από την εφαρμογή email σου.')
+    const cc = encodeURIComponent(ccRecipients.join(','))
+    window.location.href = `mailto:${primaryRecipient}?cc=${cc}&subject=${subject}&body=${body}`
+    setStatusMessage(t.contactPreparedEmail)
   }
 
   return (
@@ -45,11 +49,10 @@ export default function Contact() {
       <section className="hero-section hero-compact">
         <div className="container">
           <BackLink fallback="/" />
-          <p className="eyebrow">Επικοινωνία</p>
-          <h1>Ας μιλήσουμε</h1>
+          <p className="eyebrow">{t.contactEyebrow}</p>
+          <h1>{t.contactTitle}</h1>
           <p className="hero-sub">
-            Είμαι εδώ για να απαντήσω σε κάθε ερώτηση ή να κλείσουμε μια
-            πρώτη συνεδρία μαζί.
+            {t.contactLead}
           </p>
         </div>
       </section>
@@ -59,35 +62,44 @@ export default function Contact() {
         <div className="container contact-grid">
           {/* Info */}
           <div className="contact-info">
-            <h2>Στοιχεία Επικοινωνίας</h2>
+            <h2>{t.contactInfoTitle}</h2>
 
             <div className="contact-detail">
-              <h3>Τηλέφωνο</h3>
-              <a href={`tel:${siteData.phone.replace(/\s/g, '')}`}>
+              <h3>{t.contactPhone}</h3>
+              <a href={`tel:${phoneNumber}`}>
                 {siteData.phone}
               </a>
             </div>
 
             <div className="contact-detail">
-              <h3>Email</h3>
-              <a href={`mailto:${obfuscatedEmail}`}>{obfuscatedEmail}</a>
+              <h3>{t.contactViber}</h3>
+              <a href={`tel:${phoneNumber}`}>
+                {siteData.phone}
+              </a>
             </div>
 
             <div className="contact-detail">
-              <h3>Διεύθυνση</h3>
+              <h3>{t.contactEmail}</h3>
+              {allRecipients.map((recipient) => (
+                <p key={recipient}><a href={`mailto:${recipient}`}>{recipient}</a></p>
+              ))}
+            </div>
+
+            <div className="contact-detail">
+              <h3>{t.contactAddress}</h3>
               <p>{siteData.address}</p>
             </div>
 
             <div className="contact-detail">
-              <h3>Συνεδρίες</h3>
-              <p>Δια ζώσης στο γραφείο μου στο Μάλεμε, Χανιά</p>
-              <p>Online μέσω βιντεοκλήσης</p>
+              <h3>{t.contactSessions}</h3>
+              <p>{t.contactInPerson}</p>
+              <p>{t.contactOnline}</p>
             </div>
           </div>
 
           {/* Form */}
           <form id="contact-form" className="contact-form" onSubmit={handleSubmit}>
-            <h2>Φόρμα Επικοινωνίας</h2>
+            <h2>{t.contactFormTitle}</h2>
 
             <div className="hp-field" aria-hidden="true">
               <label htmlFor="website">Website</label>
@@ -103,7 +115,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="name">Ονοματεπώνυμο</label>
+              <label htmlFor="name">{t.contactNameLabel}</label>
               <input
                 type="text"
                 id="name"
@@ -115,7 +127,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t.contactEmailLabel}</label>
               <input
                 type="email"
                 id="email"
@@ -127,7 +139,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="phone">Τηλέφωνο</label>
+              <label htmlFor="phone">{t.contactPhoneLabel}</label>
               <input
                 type="tel"
                 id="phone"
@@ -138,7 +150,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Μήνυμα</label>
+              <label htmlFor="message">{t.contactMessageLabel}</label>
               <textarea
                 id="message"
                 name="message"
@@ -150,7 +162,7 @@ export default function Contact() {
             </div>
 
             <button type="submit" className="btn btn-primary btn-lg">
-              Αποστολή
+              {t.contactSubmit}
             </button>
 
             {statusMessage && <p className="form-status-message">{statusMessage}</p>}
@@ -161,12 +173,10 @@ export default function Contact() {
       {/* Reassurance */}
       <section className="section section-alt">
         <div className="container intro-block">
-          <p className="eyebrow">Εμπιστευτικότητα</p>
-          <h2>Ό,τι μοιραστείς, μένει εδώ</h2>
+          <p className="eyebrow">{t.contactConfidentiality}</p>
+          <h2>{t.contactConfidentialityTitle}</h2>
           <p className="intro-text">
-            Η επικοινωνία μας είναι απόλυτα εμπιστευτική. Δεν χρειάζεται να
-            έχεις έτοιμες απαντήσεις — αρκεί η διάθεση να κάνεις ένα πρώτο
-            βήμα.
+            {t.contactConfidentialityText}
           </p>
         </div>
       </section>

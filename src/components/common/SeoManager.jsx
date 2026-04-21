@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { services } from '../../data/services'
 import { posts } from '../../data/posts'
+import { localizePost } from '../../data/posts.i18n'
+import { useLanguage } from '../../context/LanguageContext'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
 const MAX_TITLE_LENGTH = 60
@@ -46,8 +48,15 @@ function normalizeDescription(description) {
   return extended
 }
 
-function getSeoByPath(pathname) {
+function getSeoByPath(pathname, isEnglish) {
   if (pathname === '/') {
+    if (isEnglish) {
+      return {
+        title: 'Adamantia Tserkaki | Psychotherapy Chania',
+        description:
+          'Psychotherapy in Chania with empathy and a safe therapeutic setting. Book your first session in person or online.',
+      }
+    }
     return {
       title: 'Αδαμαντία Τσερκάκη | Ψυχοθεραπεία Χανιά',
       description:
@@ -56,6 +65,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/about') {
+    if (isEnglish) {
+      return {
+        title: 'About | Adamantia Tserkaki',
+        description:
+          'Learn more about Adamantia Tserkaki, her therapeutic approach, core values and clinical background.',
+      }
+    }
     return {
       title: 'Σχετικά | Αδαμαντία Τσερκάκη',
       description:
@@ -64,6 +80,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/services') {
+    if (isEnglish) {
+      return {
+        title: 'Psychotherapy Services | Adamantia Tserkaki',
+        description:
+          'Individual, couples and family therapy with a personalized, supportive and respectful approach.',
+      }
+    }
     return {
       title: 'Υπηρεσίες Ψυχοθεραπείας | Αδαμαντία Τσερκάκη',
       description:
@@ -77,8 +100,16 @@ function getSeoByPath(pathname) {
 
     if (service) {
       return {
-        title: truncateTitle(`${service.title} | Αδαμαντία Τσερκάκη`),
+        title: truncateTitle(isEnglish ? `${service.title} | Adamantia Tserkaki` : `${service.title} | Αδαμαντία Τσερκάκη`),
         description: service.excerpt,
+      }
+    }
+
+    if (isEnglish) {
+      return {
+        title: 'Psychotherapy Service | Adamantia Tserkaki',
+        description:
+          'Explore this therapy service and find the right support framework based on your needs and goals.',
       }
     }
 
@@ -90,6 +121,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/blog') {
+    if (isEnglish) {
+      return {
+        title: 'Psychotherapy Blog | Adamantia Tserkaki',
+        description:
+          'Articles on anxiety, relationships and emotional wellbeing with practical and grounded insights.',
+      }
+    }
     return {
       title: 'Blog Ψυχοθεραπείας | Αδαμαντία Τσερκάκη',
       description:
@@ -100,11 +138,20 @@ function getSeoByPath(pathname) {
   if (pathname.startsWith('/blog/')) {
     const slug = pathname.split('/')[2]
     const post = posts.find((item) => item.slug === slug)
+    const localizedPost = post ? localizePost(post, isEnglish) : null
 
-    if (post) {
+    if (localizedPost) {
       return {
-        title: truncateTitle(post.seoTitle),
-        description: post.metaDescription,
+        title: truncateTitle(localizedPost.seoTitle),
+        description: localizedPost.metaDescription,
+      }
+    }
+
+    if (isEnglish) {
+      return {
+        title: 'Article | Adamantia Tserkaki',
+        description:
+          'Read psychotherapy insights with practical ideas for emotional understanding and everyday balance.',
       }
     }
 
@@ -116,6 +163,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/contact') {
+    if (isEnglish) {
+      return {
+        title: 'Contact | Adamantia Tserkaki',
+        description:
+          'Contact Adamantia Tserkaki to book your first session. In-person sessions in Chania and online sessions available.',
+      }
+    }
     return {
       title: 'Επικοινωνία | Αδαμαντία Τσερκάκη',
       description:
@@ -124,6 +178,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/faq') {
+    if (isEnglish) {
+      return {
+        title: 'FAQ | Adamantia Tserkaki',
+        description:
+          'Answers about first sessions, duration, online therapy, confidentiality and practical collaboration details.',
+      }
+    }
     return {
       title: 'Συχνές Ερωτήσεις | Αδαμαντία Τσερκάκη',
       description:
@@ -132,6 +193,13 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/privacy') {
+    if (isEnglish) {
+      return {
+        title: 'Privacy Policy | Adamantia Tserkaki',
+        description:
+          'Learn how personal data is processed, which rights you have and how to contact us for GDPR-related requests.',
+      }
+    }
     return {
       title: 'Πολιτική Απορρήτου | Αδαμαντία Τσερκάκη',
       description:
@@ -140,10 +208,25 @@ function getSeoByPath(pathname) {
   }
 
   if (pathname === '/terms') {
+    if (isEnglish) {
+      return {
+        title: 'Terms of Use | Adamantia Tserkaki',
+        description:
+          'Read the website terms of use, intellectual property rights and proper content usage guidelines.',
+      }
+    }
     return {
       title: 'Όροι Χρήσης | Αδαμαντία Τσερκάκη',
       description:
         'Ενημερώσου για τους όρους χρήσης του ιστότοπου, τα πνευματικά δικαιώματα και τους κανόνες ορθής χρήσης περιεχομένου.',
+    }
+  }
+
+  if (isEnglish) {
+    return {
+      title: 'Page | Adamantia Tserkaki',
+      description:
+        'Psychotherapy with respect and trust. Explore services and contact us to schedule your first appointment.',
     }
   }
 
@@ -170,9 +253,10 @@ function setMetaTag(selector, attribute, value) {
 
 export default function SeoManager() {
   const { pathname } = useLocation()
+  const { isEnglish } = useLanguage()
 
   useEffect(() => {
-    const seo = getSeoByPath(pathname)
+    const seo = getSeoByPath(pathname, isEnglish)
     document.title = truncateTitle(seo.title)
 
     let descriptionMeta = document.querySelector('meta[name="description"]')
@@ -196,7 +280,7 @@ export default function SeoManager() {
     setMetaTag('meta[property="og:description"]', 'content', normalizedDescription)
     setMetaTag('meta[property="og:url"]', 'content', `${BASE_URL}${pathname}`)
     setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image')
-  }, [pathname])
+  }, [pathname, isEnglish])
 
   return null
 }

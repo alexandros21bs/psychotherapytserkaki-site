@@ -106,4 +106,113 @@ export const faqSections = [
   },
 ]
 
+export const faqSectionsEn = [
+  {
+    title: 'General Questions',
+    items: [
+      {
+        question: 'When is the right time to start therapy?',
+        answer:
+          'The right time is when you feel something is weighing on you or asks to be understood more deeply. You do not need to wait until things feel unbearable to seek support.',
+      },
+      {
+        question: 'What can I expect from the first session?',
+        answer:
+          'The first session is an introductory meeting. It is a space to talk about what concerns you, share your needs and questions, and shape an initial understanding of how the process may unfold.',
+      },
+      {
+        question: 'How long does a session last?',
+        answer:
+          'A session usually lasts about 50 minutes. This creates a stable and meaningful framework for processing and connection.',
+      },
+      {
+        question: 'How often do sessions take place?',
+        answer:
+          'Frequency is decided based on your needs and the nature of your request. It is usually agreed together in a way that best supports your therapeutic process.',
+      },
+      {
+        question: 'Is everything in therapy confidential?',
+        answer:
+          'Yes. Confidentiality is a core element of the therapeutic relationship and is essential for a safe and stable environment where you can express yourself honestly.',
+      },
+      {
+        question: 'Is it normal to feel anxious before the first session?',
+        answer:
+          'Yes, absolutely. First contact with therapy is often accompanied by uncertainty or anxiety. This is natural and can be discussed calmly from the very first meeting.',
+      },
+    ],
+  },
+  {
+    title: 'How We Work',
+    items: [
+      {
+        question: 'Are online sessions available?',
+        answer:
+          'Yes. Online sessions are available when they better fit your needs and daily reality, while still maintaining a stable and meaningful therapeutic framework.',
+      },
+      {
+        question: 'Can I have one first session and decide afterward?',
+        answer:
+          'Of course. The first session can function as an introductory step so you can sense whether this process feels right for you.',
+      },
+      {
+        question: 'Do I need to talk about everything from the start?',
+        answer:
+          'No. Therapy follows your pace. There is no pressure to share everything immediately. The focus is on gradually building trust and safety.',
+      },
+      {
+        question: 'Does therapy provide ready-made solutions?',
+        answer:
+          'Therapy is not about ready-made answers. It helps you understand yourself more deeply, recognize patterns and develop more meaningful ways of coping and change.',
+      },
+      {
+        question: 'How long does therapy take overall?',
+        answer:
+          'Duration varies from person to person. It depends on your request, needs, goals and the pace of the therapeutic process.',
+      },
+      {
+        question: 'Do I need to know exactly what is happening to me to start?',
+        answer:
+          'No. You do not need to have clear answers from the beginning. A willingness to give space to what concerns you is enough.',
+      },
+      {
+        question: 'How do I know if therapy is right for me?',
+        answer:
+          'Therapy can be helpful when you need a safe space to process thoughts, emotions, difficulties or relationships. Initial contact can help you assess if this framework fits you.',
+      },
+    ],
+  },
+  {
+    title: 'Services',
+    items: [
+      {
+        question: 'Who is individual therapy for?',
+        answer:
+          'Individual therapy is for people who want to work through difficulties, emotions, anxiety, inner conflicts, relationship issues, or deepen self-understanding.',
+      },
+      {
+        question: 'When can couples therapy help?',
+        answer:
+          'Couples therapy can help when there are communication difficulties, repeated conflicts, emotional distance, or a need for better understanding and reconnection.',
+      },
+      {
+        question: 'When can family therapy help?',
+        answer:
+          'Family therapy can be helpful when tensions, communication difficulties, or major changes affect balance and cooperation in the family system.',
+      },
+      {
+        question: 'What does Integrative Psychotherapy mean?',
+        answer:
+          'Integrative psychotherapy is an approach that does not rely on a single school. It combines different therapeutic tools and adapts the process to each person’s needs and pace.',
+      },
+      {
+        question: 'How can I book an appointment?',
+        answer:
+          'You can contact us by phone or email for an initial connection and to schedule the right day and time, in person or online.',
+      },
+    ],
+  },
+]
+
 export const faqItems = faqSections[0].items.slice(0, 5)
+export const faqItemsEn = faqSectionsEn[0].items.slice(0, 5)

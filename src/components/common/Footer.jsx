@@ -1,8 +1,23 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { siteData } from '../../data/site'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const primaryRecipient = 'info@psychotheraphy.gr'
+  const ccRecipients = ['adamtserkaki@gmail.com', 'alexandros21bs@gmail.com']
+  const { t, isEnglish } = useLanguage()
+
+  function handleNewsletterSubmit(e) {
+    e.preventDefault()
+    const subject = encodeURIComponent('Νέα εγγραφή στο Newsletter')
+    const body = encodeURIComponent(`Email εγγραφής: ${newsletterEmail}`)
+    const cc = encodeURIComponent(ccRecipients.join(','))
+
+    window.location.href = `mailto:${primaryRecipient}?cc=${cc}&subject=${subject}&body=${body}`
+  }
 
   return (
     <footer className="site-footer">
@@ -17,39 +32,43 @@ export default function Footer() {
 
         {/* Col 2 – Πλοήγηση */}
         <div className="footer-links">
-          <h4 className="footer-heading">Πλοήγηση</h4>
+          <h4 className="footer-heading">{t.footerNav}</h4>
           <ul>
-            <li><Link to="/">Αρχική</Link></li>
-            <li><Link to="/about">Σχετικά</Link></li>
-            <li><Link to="/services">Υπηρεσίες</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to="/">{t.navHome}</Link></li>
+            <li><Link to="/about">{t.navAbout}</Link></li>
+            <li><Link to="/services">{t.navServices}</Link></li>
+            <li><Link to="/blog">{t.navBlog}</Link></li>
           </ul>
         </div>
 
         {/* Col 3 – Υποστήριξη */}
         <div className="footer-links">
-          <h4 className="footer-heading">Υποστήριξη</h4>
+          <h4 className="footer-heading">{t.footerSupport}</h4>
           <ul>
-            <li><Link to="/faq">FAQ / Βοήθεια</Link></li>
-            <li><Link to="/contact">Επικοινωνία</Link></li>
-            <li><Link to="/privacy">Πολιτική Απορρήτου</Link></li>
-            <li><Link to="/terms">Όροι Χρήσης</Link></li>
+            <li><Link to="/faq">{t.footerFaq}</Link></li>
+            <li><Link to="/contact">{t.footerContact}</Link></li>
+            <li><Link to="/privacy">{t.privacyPolicy}</Link></li>
+            <li><Link to="/terms">{t.footerTerms}</Link></li>
           </ul>
         </div>
 
         {/* Col 4 – Newsletter */}
         <div className="footer-newsletter">
-          <h4 className="footer-heading">Newsletter</h4>
-          <p>Εγγράψου για να λαμβάνεις αραιά και επιλεγμένα emails με πρακτικές ιδέες και ενημερώσεις.</p>
-          <form className="footer-newsletter-form" action="#" method="post">
+          <h4 className="footer-heading">{t.footerNewsletter}</h4>
+          <p>{t.footerNewsletterText}</p>
+          <form className="footer-newsletter-form" onSubmit={handleNewsletterSubmit}>
+            <label htmlFor="newsletter-email">{t.footerNewsletterEmailLabel}</label>
             <div className="footer-newsletter-row">
               <input
                 type="email"
+                id="newsletter-email"
                 name="email"
-                placeholder="Το email σου"
+                placeholder={t.footerNewsletterPlaceholder}
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
               />
-              <button type="submit" className="btn btn-primary">Εγγραφή</button>
+              <button type="submit" className="btn btn-primary">{t.footerNewsletterButton}</button>
             </div>
           </form>
         </div>
@@ -57,7 +76,7 @@ export default function Footer() {
 
       {/* ── Middle: Social bar ── */}
       <div className="container footer-social-bar">
-        <span className="footer-social-label">Social</span>
+        <span className="footer-social-label">{isEnglish ? 'Social' : 'Social'}</span>
         <div className="footer-social-icons">
           <a href="https://facebook.com/adamtserkaki" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>

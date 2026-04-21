@@ -12,21 +12,30 @@ export const reviews = [
     id: 1,
     quote:
       'Από την πρώτη συνεδρία ένιωσα ασφάλεια και σεβασμό. Η διαδικασία με βοήθησε να κατανοήσω καλύτερα τον εαυτό μου και να διαχειρίζομαι το άγχος μου.',
+    quoteEn:
+      'From the very first session I felt safe and respected. The process helped me understand myself better and manage my anxiety.',
     author: 'Ανώνυμη αξιολόγηση',
+    authorEn: 'Anonymous review',
     source: 'Google',
   },
   {
     id: 2,
     quote:
       'Η προσέγγιση είναι ανθρώπινη και ουσιαστική. Νιώθω ότι ακούγομαι πραγματικά και ότι κάθε βήμα γίνεται με τον δικό μου ρυθμό.',
+    quoteEn:
+      'The approach is human and meaningful. I feel truly heard, and every step happens at my own pace.',
     author: 'Ανώνυμη αξιολόγηση',
+    authorEn: 'Anonymous review',
     source: 'Google',
   },
   {
     id: 3,
     quote:
       'Με βοήθησε να δω πιο καθαρά τις σχέσεις μου και να βάλω όρια χωρίς ενοχές. Ένας χώρος εμπιστοσύνης που τον προτείνω ανεπιφύλακτα.',
+    quoteEn:
+      'It helped me see my relationships more clearly and set boundaries without guilt. A space of trust that I highly recommend.',
     author: 'Ανώνυμη αξιολόγηση',
+    authorEn: 'Anonymous review',
     source: 'Google',
   },
 ]

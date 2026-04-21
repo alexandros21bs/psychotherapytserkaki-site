@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services'
 import BackLink from '../components/common/BackLink'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Services() {
+  const { isEnglish } = useLanguage()
+
   return (
     <>
       {/* Hero */}
       <section className="hero-section hero-compact">
         <div className="container">
           <BackLink fallback="/" />
-          <p className="eyebrow">Υπηρεσίες</p>
-          <h1>Πώς μπορώ να βοηθήσω</h1>
+          <p className="eyebrow">{isEnglish ? 'Services' : 'Υπηρεσίες'}</p>
+          <h1>{isEnglish ? 'How I can help' : 'Πώς μπορώ να βοηθήσω'}</h1>
           <p className="hero-sub">
-            Κάθε θεραπευτική διαδικασία διαμορφώνεται με βάση τις δικές σου
-            ανάγκες, μέσα σε ένα πλαίσιο ασφάλειας, σεβασμού και ουσιαστικής
-            υποστήριξης.
+            {isEnglish
+              ? 'Each therapeutic process is shaped around your needs, within a framework of safety, respect and meaningful support.'
+              : 'Κάθε θεραπευτική διαδικασία διαμορφώνεται με βάση τις δικές σου ανάγκες, μέσα σε ένα πλαίσιο ασφάλειας, σεβασμού και ουσιαστικής υποστήριξης.'}
           </p>
         </div>
       </section>
@@ -31,14 +34,14 @@ export default function Services() {
               >
                 <div className="card-service-image">
                   {service.image ? (
-                    <img src={service.image} alt={service.title} loading="lazy" />
+                    <img src={service.image} alt={isEnglish ? (service.titleEn || service.title) : service.title} loading="lazy" />
                   ) : (
                     '[IMAGE_PLACEHOLDER]'
                   )}
                 </div>
-                <h3>{service.title}</h3>
-                <p>{service.excerpt}</p>
-                <span className="text-link">Μάθε περισσότερα →</span>
+                <h3>{isEnglish ? (service.titleEn || service.title) : service.title}</h3>
+                <p>{isEnglish ? (service.excerptEn || service.excerpt) : service.excerpt}</p>
+                <span className="text-link">{isEnglish ? 'Learn more →' : 'Μάθε περισσότερα →'}</span>
               </Link>
             ))}
           </div>
@@ -49,12 +52,11 @@ export default function Services() {
       <section className="section section-alt">
         <div className="container intro-block">
           <p className="eyebrow">Υποστήριξη</p>
-          <h2>Ένα ασφαλές πλαίσιο για κάθε βήμα</h2>
+          <h2>{isEnglish ? 'A safe framework for every step' : 'Ένα ασφαλές πλαίσιο για κάθε βήμα'}</h2>
           <p className="intro-text">
-            Η θεραπεία δεν απαιτεί να έχεις έτοιμες απαντήσεις. Αρκεί η
-            διάθεση να ξεκινήσεις. Με εμπιστοσύνη, υπομονή και σεβασμό στον
-            δικό σου ρυθμό, μπορεί να δημιουργηθεί ένας χώρος ουσιαστικής
-            υποστήριξης.
+            {isEnglish
+              ? 'Therapy does not require ready-made answers. A willingness to begin is enough. With trust, patience and respect for your own pace, a meaningful support space can emerge.'
+              : 'Η θεραπεία δεν απαιτεί να έχεις έτοιμες απαντήσεις. Αρκεί η διάθεση να ξεκινήσεις. Με εμπιστοσύνη, υπομονή και σεβασμό στον δικό σου ρυθμό, μπορεί να δημιουργηθεί ένας χώρος ουσιαστικής υποστήριξης.'}
           </p>
         </div>
       </section>
@@ -62,13 +64,14 @@ export default function Services() {
       {/* CTA */}
       <section className="section cta-section">
         <div className="container cta-block">
-          <h2>Κάνε το πρώτο βήμα</h2>
+          <h2>{isEnglish ? 'Take the first step' : 'Κάνε το πρώτο βήμα'}</h2>
           <p>
-            Επικοινώνησε μαζί μου για μια πρώτη επικοινωνία, δια ζώσης ή
-            online.
+            {isEnglish
+              ? 'Contact me for an initial consultation, in person or online.'
+              : 'Επικοινώνησε μαζί μου για μια πρώτη επικοινωνία, δια ζώσης ή online.'}
           </p>
           <Link to="/contact" className="btn btn-primary btn-lg">
-            Κλείσε Ραντεβού
+            {isEnglish ? 'Book Appointment' : 'Κλείσε Ραντεβού'}
           </Link>
         </div>
       </section>
