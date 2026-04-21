@@ -34,16 +34,23 @@ export default function Home() {
           </div>
 
           <div className="hero-visual">
-            <img
-              src="/images/hero-adam.webp"
-              alt="Αδαμαντία Τσερκάκη"
-              className="home-hero-image"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              width="1080"
-              height="1304"
-            />
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                srcSet="/images/hero-adam-mobile.webp"
+              />
+              <img
+                src="/images/hero-adam.webp"
+                alt="Αδαμαντία Τσερκάκη"
+                className="home-hero-image"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width="1080"
+                height="1304"
+                sizes="(max-width: 767px) 92vw, (max-width: 1099px) 46vw, 520px"
+              />
+            </picture>
           </div>
         </div>
       </section>
