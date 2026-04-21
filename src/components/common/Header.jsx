@@ -69,7 +69,7 @@ export default function Header() {
 
       <div className="container header-inner">
         <Link to="/" className="site-logo">
-          <span className="site-logo-mark">AT</span>
+          <img src="/logo.svg" alt="" className="site-logo-mark" width="46" height="46" />
           <span className="site-logo-text">
             <strong>{siteData.brandName}</strong>
             <small>{siteData.title}</small>

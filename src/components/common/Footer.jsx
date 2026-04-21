@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="container footer-grid">
         {/* Col 1 – Brand */}
         <div className="footer-brand">
-          <div className="footer-logo-placeholder">Logo</div>
+          <img src="/logo.svg" alt="" className="footer-logo" width="80" height="80" />
           <h3 className="footer-brand-name">{siteData.brandName}</h3>
           <p className="footer-brand-desc">{siteData.title}</p>
         </div>
