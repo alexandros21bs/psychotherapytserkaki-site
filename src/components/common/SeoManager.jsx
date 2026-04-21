@@ -6,6 +6,7 @@ import { localizePost } from '../../data/posts.i18n'
 import { useLanguage } from '../../context/LanguageContext'
 
 const BASE_URL = 'https://psychotherapytserkaki.gr'
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/hero-adam.webp`
 const MAX_TITLE_LENGTH = 60
 const MIN_DESCRIPTION_LENGTH = 150
 const MAX_DESCRIPTION_LENGTH = 160
@@ -46,6 +47,22 @@ function normalizeDescription(description) {
   }
 
   return extended
+}
+
+function toAbsoluteUrl(urlOrPath) {
+  if (!urlOrPath) {
+    return DEFAULT_OG_IMAGE
+  }
+
+  if (urlOrPath.startsWith('http://') || urlOrPath.startsWith('https://')) {
+    return urlOrPath
+  }
+
+  if (urlOrPath.startsWith('/')) {
+    return `${BASE_URL}${urlOrPath}`
+  }
+
+  return `${BASE_URL}/${urlOrPath}`
 }
 
 function getSeoByPath(pathname, isEnglish) {
@@ -102,6 +119,8 @@ function getSeoByPath(pathname, isEnglish) {
       return {
         title: truncateTitle(isEnglish ? `${service.title} | Adamantia Tserkaki` : `${service.title} | Αδαμαντία Τσερκάκη`),
         description: service.excerpt,
+        ogImage: service.image || '/images/hero-adam.webp',
+        ogImageAlt: isEnglish ? (service.titleEn || service.title) : service.title,
       }
     }
 
@@ -144,6 +163,10 @@ function getSeoByPath(pathname, isEnglish) {
       return {
         title: truncateTitle(localizedPost.seoTitle),
         description: localizedPost.metaDescription,
+        ogImage: localizedPost.featuredImage,
+        ogImageAlt: localizedPost.featuredImageAlt,
+        ogType: 'article',
+        articlePublishedTime: localizedPost.date,
       }
     }
 
@@ -266,6 +289,14 @@ export default function SeoManager() {
       document.head.appendChild(descriptionMeta)
     }
     const normalizedDescription = normalizeDescription(seo.description)
+    const absoluteUrl = `${BASE_URL}${pathname}`
+    const ogImage = toAbsoluteUrl(seo.ogImage)
+    const ogImageAlt = seo.ogImageAlt || (isEnglish ? 'Adamantia Tserkaki psychotherapy' : 'Αδαμαντία Τσερκάκη ψυχοθεραπεία')
+    const ogType = seo.ogType || 'website'
+    const locale = isEnglish ? 'en_US' : 'el_GR'
+    const alternateLocale = isEnglish ? 'el_GR' : 'en_US'
+    const normalizedTitle = truncateTitle(seo.title)
+
     descriptionMeta.setAttribute('content', normalizedDescription)
 
     let canonicalLink = document.querySelector('link[rel="canonical"]')
@@ -274,12 +305,31 @@ export default function SeoManager() {
       canonicalLink.setAttribute('rel', 'canonical')
       document.head.appendChild(canonicalLink)
     }
-    canonicalLink.setAttribute('href', `${BASE_URL}${pathname}`)
+    canonicalLink.setAttribute('href', absoluteUrl)
 
-    setMetaTag('meta[property="og:title"]', 'content', truncateTitle(seo.title))
+    setMetaTag('meta[property="og:type"]', 'content', ogType)
+    setMetaTag('meta[property="og:site_name"]', 'content', 'Psychotherapy Tserkaki')
+    setMetaTag('meta[property="og:locale"]', 'content', locale)
+    setMetaTag('meta[property="og:locale:alternate"]', 'content', alternateLocale)
+    setMetaTag('meta[property="og:title"]', 'content', normalizedTitle)
     setMetaTag('meta[property="og:description"]', 'content', normalizedDescription)
-    setMetaTag('meta[property="og:url"]', 'content', `${BASE_URL}${pathname}`)
+    setMetaTag('meta[property="og:url"]', 'content', absoluteUrl)
+    setMetaTag('meta[property="og:image"]', 'content', ogImage)
+    setMetaTag('meta[property="og:image:secure_url"]', 'content', ogImage)
+    setMetaTag('meta[property="og:image:alt"]', 'content', ogImageAlt)
+
     setMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image')
+    setMetaTag('meta[name="twitter:title"]', 'content', normalizedTitle)
+    setMetaTag('meta[name="twitter:description"]', 'content', normalizedDescription)
+    setMetaTag('meta[name="twitter:url"]', 'content', absoluteUrl)
+    setMetaTag('meta[name="twitter:image"]', 'content', ogImage)
+    setMetaTag('meta[name="twitter:image:alt"]', 'content', ogImageAlt)
+
+    if (seo.articlePublishedTime) {
+      setMetaTag('meta[property="article:published_time"]', 'content', seo.articlePublishedTime)
+    }
+
+    document.documentElement.lang = isEnglish ? 'en' : 'el'
   }, [pathname, isEnglish])
 
   return null
