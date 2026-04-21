@@ -26,3 +26,9 @@ _originals
 art*.jpg
 art*.png
 articles*.jpg
+
+# Stray asset drops at repo root
+/4.svg
+/ogimage.png
+/sos*.png
+/[0-9]*.svg
