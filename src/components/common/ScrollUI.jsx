@@ -1,48 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
 
+const AI_CHAT_SRC = 'https://nik-greek-adamantia.hf.space?__theme=light'
+
 export default function ScrollUI() {
-  const [progress, setProgress] = useState(0)
   const [showBackTop, setShowBackTop] = useState(false)
-  const progressRef = useRef(0)
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [isChatMinimized, setIsChatMinimized] = useState(false)
   const showBackTopRef = useRef(false)
   const { t, isEnglish } = useLanguage()
   const { pathname } = useLocation()
-  const isAiChatPage = pathname === '/ai-chat'
 
   useEffect(() => {
-    let isMounted = true
-    const header = document.querySelector('.site-header')
+    setIsChatOpen(false)
+    setIsChatMinimized(false)
+  }, [pathname])
 
-    function updateHeaderOffset() {
-      if (!isMounted) return
-      const headerHeight = header ? header.getBoundingClientRect().height : 0
-      document.documentElement.style.setProperty('--header-offset', `${headerHeight}px`)
-    }
-
-    updateHeaderOffset()
-    window.addEventListener('resize', updateHeaderOffset)
-    window.addEventListener('orientationchange', updateHeaderOffset)
-
-    let resizeObserver
-    if (header && 'ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(updateHeaderOffset)
-      resizeObserver.observe(header)
-    }
-
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(updateHeaderOffset).catch(() => {})
-    }
-
-    return () => {
-      isMounted = false
-      window.removeEventListener('resize', updateHeaderOffset)
-      window.removeEventListener('orientationchange', updateHeaderOffset)
-      if (resizeObserver) {
-        resizeObserver.disconnect()
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === 'Escape') {
+        setIsChatOpen(false)
       }
     }
+
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
   }, [])
 
   useEffect(() => {
@@ -53,9 +36,6 @@ export default function ScrollUI() {
 
       animationFrameId = window.requestAnimationFrame(() => {
         animationFrameId = 0
-        const scrollTop = window.scrollY
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight
-        const nextProgress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0
         const footer = document.querySelector('.site-footer')
         let shouldShowBackTop = false
 
@@ -63,11 +43,6 @@ export default function ScrollUI() {
           const footerTop = footer.getBoundingClientRect().top
           const preFooterOffset = 140
           shouldShowBackTop = footerTop <= window.innerHeight + preFooterOffset
-        }
-
-        if (Math.abs(nextProgress - progressRef.current) > 0.2) {
-          progressRef.current = nextProgress
-          setProgress(nextProgress)
         }
 
         if (shouldShowBackTop !== showBackTopRef.current) {
@@ -96,12 +71,18 @@ export default function ScrollUI() {
     }
   }
 
+  function toggleChatPanel() {
+    setIsChatOpen((current) => {
+      const next = !current
+      if (next) {
+        setIsChatMinimized(false)
+      }
+      return next
+    })
+  }
+
   return (
     <>
-      <div className="scroll-progress" aria-hidden="true">
-        <span className="scroll-progress-fill" style={{ width: `${progress}%` }} />
-      </div>
-
       <div className="fixed-buttons">
         <button
           type="button"
@@ -112,9 +93,12 @@ export default function ScrollUI() {
           <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
         </button>
 
-        <Link
-          to="/ai-chat"
-          className={`floating-ai-chat ${isAiChatPage ? 'is-active' : ''}`}
+        <button
+          type="button"
+          className={`floating-ai-chat ${isChatOpen ? 'is-active' : ''}`}
+          onClick={toggleChatPanel}
+          aria-expanded={isChatOpen}
+          aria-controls="floating-ai-chat-panel"
           aria-label={t.aiChatFloating}
         >
           <svg className="floating-ai-chat-icon" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
@@ -122,8 +106,54 @@ export default function ScrollUI() {
             <path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" />
           </svg>
           <span className="floating-ai-chat-text">{t.aiChatFloating}</span>
-        </Link>
+        </button>
       </div>
+
+      {isChatOpen ? (
+        <section
+          id="floating-ai-chat-panel"
+          className={`chat-widget ${isChatMinimized ? 'is-minimized' : ''}`}
+          role="dialog"
+          aria-label={isEnglish ? 'AI chat window' : 'Παράθυρο AI συνομιλίας'}
+        >
+          <header className="chat-widget-header">
+            <strong>{t.aiChatFloating}</strong>
+            <div className="chat-widget-controls">
+              <button
+                type="button"
+                className="chat-widget-minimize"
+                onClick={() => setIsChatMinimized((current) => !current)}
+                aria-label={isChatMinimized ? (isEnglish ? 'Restore chat' : 'Επαναφορά συνομιλίας') : (isEnglish ? 'Minimize chat' : 'Ελαχιστοποίηση συνομιλίας')}
+              >
+                {isChatMinimized ? '▢' : '−'}
+              </button>
+              <button
+                type="button"
+                className="chat-widget-close"
+                onClick={() => {
+                  setIsChatOpen(false)
+                  setIsChatMinimized(false)
+                }}
+                aria-label={isEnglish ? 'Close chat' : 'Κλείσιμο συνομιλίας'}
+              >
+                ×
+              </button>
+            </div>
+          </header>
+
+          {isChatMinimized ? null : (
+            <iframe
+              src={AI_CHAT_SRC}
+              title="AI CHAT"
+              frameBorder="0"
+              loading="eager"
+              referrerPolicy="strict-origin-when-cross-origin"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads"
+              allow="clipboard-read; clipboard-write"
+            />
+          )}
+        </section>
+      ) : null}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { siteData } from '../../data/site'
 import { useLanguage } from '../../context/LanguageContext'
@@ -7,10 +7,47 @@ export default function Header() {
   const { language, setLanguage, t, isEnglish } = useLanguage()
   const { pathname } = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [navProgress, setNavProgress] = useState(0)
+  const navProgressRef = useRef(0)
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => setIsMenuOpen(false), 0)
     return () => window.clearTimeout(timeoutId)
+  }, [pathname])
+
+  useEffect(() => {
+    let animationFrameId = 0
+
+    function updateProgress() {
+      const scrollTop = window.scrollY || window.pageYOffset || 0
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      const nextProgress = maxScroll > 0 ? Math.min(Math.max((scrollTop / maxScroll) * 100, 0), 100) : 0
+
+      if (Math.abs(nextProgress - navProgressRef.current) > 0.1) {
+        navProgressRef.current = nextProgress
+        setNavProgress(nextProgress)
+      }
+    }
+
+    function handleScroll() {
+      if (animationFrameId) return
+      animationFrameId = window.requestAnimationFrame(() => {
+        animationFrameId = 0
+        updateProgress()
+      })
+    }
+
+    updateProgress()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId)
+      }
+    }
   }, [pathname])
 
   function closeMenu() {
@@ -83,7 +120,8 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="container header-inner">
+      <div className="site-nav-bar">
+        <div className="container header-inner">
         <Link to="/" className="site-logo" onClick={closeMenu}>
           <img src="/logo.svg" alt="" className="site-logo-mark" width="64" height="64" />
           <span className="site-logo-text">
@@ -110,7 +148,6 @@ export default function Header() {
           <NavLink to="/about" onClick={closeMenu}>{t.navAbout}</NavLink>
           <NavLink to="/services" onClick={closeMenu}>{t.navServices}</NavLink>
           <NavLink to="/blog" onClick={closeMenu}>{t.navBlog}</NavLink>
-          <NavLink to="/ai-chat" onClick={closeMenu}>AI CHAT</NavLink>
           <div className="nav-lang-switch" role="group" aria-label={isEnglish ? 'Language selector' : 'Επιλογή γλώσσας'}>
             <button
               type="button"
@@ -133,6 +170,14 @@ export default function Header() {
             {t.navContactCta}
           </NavLink>
         </nav>
+        </div>
+
+        <div className="nav-progress" aria-hidden="true">
+          <span
+            className="nav-progress-fill"
+            style={{ transform: `scaleX(${navProgress / 100})` }}
+          />
+        </div>
       </div>
     </header>
   )
