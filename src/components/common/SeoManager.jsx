@@ -37,8 +37,16 @@ function normalizeDescription(description) {
   let extended = cleanDescription
   let i = 0
   while (extended.length < MIN_DESCRIPTION_LENGTH) {
-    extended = `${extended}${fillers[i % fillers.length]}`
+    const filler = fillers[i % fillers.length]
+    const fillerText = filler.trim().replace(/\.$/, '')
+    if (!extended.includes(fillerText)) {
+      extended = `${extended}${filler}`
+    }
     i += 1
+
+    if (i > fillers.length * 2) {
+      break
+    }
   }
 
   if (extended.length > MAX_DESCRIPTION_LENGTH) {
@@ -92,7 +100,7 @@ function setJsonLd(id, payload) {
 }
 
 function isKnownPath(pathname) {
-  if (pathname === '/' || pathname === '/about' || pathname === '/services' || pathname === '/blog' || pathname === '/contact' || pathname === '/faq' || pathname === '/privacy' || pathname === '/terms') {
+  if (pathname === '/' || pathname === '/about' || pathname === '/services' || pathname === '/blog' || pathname === '/ai-chat' || pathname === '/contact' || pathname === '/faq' || pathname === '/privacy' || pathname === '/terms') {
     return true
   }
 
@@ -227,6 +235,21 @@ function getSeoByPath(pathname, isEnglish) {
       title: 'Επικοινωνία | Αδαμαντία Τσερκάκη',
       description:
         'Επικοινωνήστε με την Αδαμαντία Τσερκάκη για πρώτη συνεδρία. Δια ζώσης στο Μάλεμε Χανίων και online συνεδρίες με απόλυτη εμπιστευτικότητα.',
+    }
+  }
+
+  if (pathname === '/ai-chat') {
+    if (isEnglish) {
+      return {
+        title: 'AI Chat | Adamantia Tserkaki',
+        description:
+          'Use the AI chat assistant for initial guidance and information about psychotherapy services and appointment options.',
+      }
+    }
+    return {
+      title: 'AI Chat | Αδαμαντία Τσερκάκη',
+      description:
+        'Χρησιμοποίησε το AI chat για αρχική καθοδήγηση και ενημέρωση σχετικά με υπηρεσίες ψυχοθεραπείας και επιλογές ραντεβού.',
     }
   }
 
@@ -444,7 +467,7 @@ export default function SeoManager() {
           articlePublishedTime: post.date,
         }
         applySeo(postSeo, pathname, isEnglish, basePost)
-      })
+      }).catch(() => {})
     }
 
     return () => {

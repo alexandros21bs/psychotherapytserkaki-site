@@ -48,8 +48,8 @@ export default function Privacy() {
           <h2>{isEnglish ? 'Data subject rights' : 'Δικαιώματα υποκειμένου'}</h2>
           <p>
             {isEnglish
-              ? 'You have the right of access, rectification, erasure, restriction of processing and portability where applicable. For any request, contact info@psychotherapy.gr.'
-              : 'Έχεις δικαίωμα πρόσβασης, διόρθωσης, διαγραφής, περιορισμού επεξεργασίας και φορητότητας όπου εφαρμόζεται. Για οποιοδήποτε αίτημα επικοινώνησε στο info@psychotherapy.gr.'}
+              ? 'You have the right of access, rectification, erasure, restriction of processing and portability where applicable. For any request, contact info@psychotherapytserkaki.gr.'
+              : 'Έχεις δικαίωμα πρόσβασης, διόρθωσης, διαγραφής, περιορισμού επεξεργασίας και φορητότητας όπου εφαρμόζεται. Για οποιοδήποτε αίτημα επικοινώνησε στο info@psychotherapytserkaki.gr.'}
           </p>
 
           <h2>{isEnglish ? 'Security' : 'Ασφάλεια'}</h2>

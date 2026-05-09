@@ -1,16 +1,17 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { STORAGE_KEY, translations } from './language-constants'
+import { readStorageValue, writeStorageValue } from '../utils/browserStorage'
 
 const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY)
+    const stored = readStorageValue(STORAGE_KEY)
     return stored === 'en' ? 'en' : 'el'
   })
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, language)
+    writeStorageValue(STORAGE_KEY, language)
     document.documentElement.lang = language === 'en' ? 'en' : 'el'
   }, [language])
 
@@ -27,6 +28,7 @@ export function LanguageProvider({ children }) {
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useLanguage() {
   const context = useContext(LanguageContext)
   if (!context) {

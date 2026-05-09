@@ -1,9 +1,25 @@
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { siteData } from '../../data/site'
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function Header() {
   const { language, setLanguage, t, isEnglish } = useLanguage()
+  const { pathname } = useLocation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setIsMenuOpen(false), 0)
+    return () => window.clearTimeout(timeoutId)
+  }, [pathname])
+
+  function closeMenu() {
+    setIsMenuOpen(false)
+  }
+
+  function toggleMenu() {
+    setIsMenuOpen((current) => !current)
+  }
 
   return (
     <header className="site-header">
@@ -21,7 +37,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="topbar-text topbar-link"
               >
-                {isEnglish ? 'Maleme, Platanias Municipality, Chania, Greece' : 'Μαλεμε Δημος Πλατανια , Chania, Greece'}
+                {isEnglish ? 'Maleme, Platanias Municipality, Chania, Greece' : 'Μάλεμε, Δήμος Πλατανιά, Χανιά'}
               </a>
             </div>
           </div>
@@ -68,7 +84,7 @@ export default function Header() {
       </div>
 
       <div className="container header-inner">
-        <Link to="/" className="site-logo">
+        <Link to="/" className="site-logo" onClick={closeMenu}>
           <img src="/logo.svg" alt="" className="site-logo-mark" width="64" height="64" />
           <span className="site-logo-text">
             <strong>{isEnglish ? 'Adamantia Tserkaki' : siteData.brandName}</strong>
@@ -76,12 +92,26 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="site-nav">
-          <NavLink to="/">{t.navHome}</NavLink>
-          <NavLink to="/about">{t.navAbout}</NavLink>
-          <NavLink to="/services">{t.navServices}</NavLink>
-          <NavLink to="/blog">{t.navBlog}</NavLink>
-          <div className="nav-lang-switch" role="group" aria-label="Language selector">
+        <button
+          type="button"
+          className={`menu-toggle ${isMenuOpen ? 'is-open' : ''}`}
+          aria-label={isMenuOpen ? (isEnglish ? 'Close menu' : 'Κλείσιμο μενού') : (isEnglish ? 'Open menu' : 'Άνοιγμα μενού')}
+          aria-controls="site-navigation"
+          aria-expanded={isMenuOpen}
+          onClick={toggleMenu}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav id="site-navigation" className={`site-nav ${isMenuOpen ? 'is-open' : ''}`}>
+          <NavLink to="/" onClick={closeMenu}>{t.navHome}</NavLink>
+          <NavLink to="/about" onClick={closeMenu}>{t.navAbout}</NavLink>
+          <NavLink to="/services" onClick={closeMenu}>{t.navServices}</NavLink>
+          <NavLink to="/blog" onClick={closeMenu}>{t.navBlog}</NavLink>
+          <NavLink to="/ai-chat" onClick={closeMenu}>AI CHAT</NavLink>
+          <div className="nav-lang-switch" role="group" aria-label={isEnglish ? 'Language selector' : 'Επιλογή γλώσσας'}>
             <button
               type="button"
               className={`nav-lang-btn ${language === 'el' ? 'is-active' : ''}`}
@@ -99,7 +129,7 @@ export default function Header() {
               EN
             </button>
           </div>
-          <NavLink to="/contact" className="btn btn-primary nav-cta">
+          <NavLink to="/contact" className="btn btn-primary nav-cta" onClick={closeMenu}>
             {t.navContactCta}
           </NavLink>
         </nav>

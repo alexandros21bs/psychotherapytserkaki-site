@@ -104,9 +104,11 @@
   min-height: 24px;
   padding: 0 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--muted);
+  border: 1px solid rgba(111, 87, 70, 0.34);
+  color: var(--primary-dark);
+  background: rgba(255, 250, 246, 0.72);
   font-size: 0.76rem;
+  font-weight: 600;
 }
 
 .blog-card-link {

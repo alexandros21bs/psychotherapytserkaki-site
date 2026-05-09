@@ -6,17 +6,15 @@ import { useLanguage } from '../../context/LanguageContext'
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   const [newsletterEmail, setNewsletterEmail] = useState('')
-  const primaryRecipient = 'info@psychotheraphy.gr'
-  const ccRecipients = ['adamtserkaki@gmail.com', 'alexandros21bs@gmail.com']
+  const primaryRecipient = siteData.email
   const { t, isEnglish } = useLanguage()
 
   function handleNewsletterSubmit(e) {
     e.preventDefault()
     const subject = encodeURIComponent(isEnglish ? 'New newsletter subscription' : 'Νέα εγγραφή στο Newsletter')
     const body = encodeURIComponent(isEnglish ? `Subscription email: ${newsletterEmail}` : `Email εγγραφής: ${newsletterEmail}`)
-    const cc = encodeURIComponent(ccRecipients.join(','))
 
-    window.location.href = `mailto:${primaryRecipient}?cc=${cc}&subject=${subject}&body=${body}`
+    window.location.href = `mailto:${primaryRecipient}?subject=${subject}&body=${body}`
   }
 
   return (

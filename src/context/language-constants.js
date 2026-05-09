@@ -7,6 +7,7 @@ export const translations = {
     navServices: 'Υπηρεσίες',
     navBlog: 'Blog',
     navContactCta: 'Κλείσε Ραντεβού',
+    aiChatFloating: 'AI Συνομιλία',
     socialLabel: 'Social στοιχεία',
     cookieAria: 'Cookie ενημέρωση',
     cookieText:
@@ -48,6 +49,8 @@ export const translations = {
       'Η επικοινωνία μας είναι απόλυτα εμπιστευτική. Δεν χρειάζεται να έχεις έτοιμες απαντήσεις, αρκεί η διάθεση να κάνεις ένα πρώτο βήμα.',
     contactPreparedEmail:
       'Το email σου προετοιμάστηκε. Ολοκλήρωσε την αποστολή από την εφαρμογή email σου.',
+    contactEmailFallback:
+      'Δεν μπόρεσε να ανοίξει η εφαρμογή email. Στείλε μήνυμα στο info@psychotherapytserkaki.gr.',
     contactSpamRejected: 'Η αποστολή απορρίφθηκε για λόγους ασφάλειας.',
   },
   en: {
@@ -56,6 +59,7 @@ export const translations = {
     navServices: 'Services',
     navBlog: 'Blog',
     navContactCta: 'Book Appointment',
+    aiChatFloating: 'AI Chat',
     socialLabel: 'Social links',
     cookieAria: 'Cookie notice',
     cookieText:
@@ -96,6 +100,7 @@ export const translations = {
     contactConfidentialityText:
       'Our communication is fully confidential. You do not need to have all the answers, only the willingness to take a first step.',
     contactPreparedEmail: 'Your email draft is ready. Please complete sending it in your email app.',
+    contactEmailFallback: 'Your email app could not be opened. Please email info@psychotherapytserkaki.gr.',
     contactSpamRejected: 'Submission was rejected for security reasons.',
   },
 }
