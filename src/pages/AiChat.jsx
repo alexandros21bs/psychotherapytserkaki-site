@@ -2,7 +2,7 @@ export default function AiChat() {
   return (
     <section className="ai-chat-page" aria-label="AI CHAT">
       <iframe
-        src="https://nik-greek-adamantia.hf.space?__theme=light"
+        src="https://nikos-gr-adamantia.hf.space?__theme=light"
         title="AI CHAT"
         frameBorder="0"
         width="100%"

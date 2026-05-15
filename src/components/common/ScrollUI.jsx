@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
 
-const AI_CHAT_SRC = 'https://nik-greek-adamantia.hf.space?__theme=light'
+const AI_CHAT_SRC = 'https://nikos-gr-adamantia.hf.space?__theme=light'
 
 export default function ScrollUI() {
   const [showBackTop, setShowBackTop] = useState(false)
